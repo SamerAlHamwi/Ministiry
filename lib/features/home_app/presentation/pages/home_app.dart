@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ministry_minister_app/core/api/data_source/remote_data_source.dart';
+import 'package:ministry_minister_app/features/auth/presentation/pages/login_page.dart';
 import 'package:ministry_minister_app/features/home_app/data/calls_list_response.dart';
 
 import '../../../../core/boilerplate/pagination/widgets/pagination_list.dart';
@@ -8,6 +10,7 @@ import '../../../../core/constants/Keys.dart';
 import '../../../../core/constants/app_assets.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_theme.dart';
+import '../../../../core/utils/Navigation/Navigation.dart';
 import '../../domain/repositories/appointment_repository.dart';
 import '../widgets/appointment_list_card.dart';
 
@@ -19,16 +22,44 @@ class HomeApp extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         key: Keys.scaffoldKey,
+        appBar: AppBar(
+          leading: IconButton(icon: const Icon(Icons.logout), onPressed: () {
+            showDialog(context: context, builder:
+                (context) {
+              return AlertDialog(
+                title: Text('Are you sure?'.tr()),
+                actions: [
+                  FilledButton(onPressed: () {
+                    RemoteDataSource.logOut();
+                    Navigation.push(const LoginPage());
+                  }, child: Text('Yes'.tr())),
+                  FilledButton(onPressed: () {Navigator.pop(context);}, child: Text('No'.tr())),
+                ],
+              );
+            });
+          }),
+          actions: [
+            IconButton(icon: const Icon(Icons.history, color: Colors.white), onPressed: () {}),
+          ],
+          iconTheme: const IconThemeData(color: Colors.white),
+          title: Text('Calls'.tr()),
+        ),
         body: _getBodyWidget());
   }
 
   Container _getBodyWidget() {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(16),
+      width: double.infinity,
+      height: double.infinity,
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(AppAssets.background), fit: BoxFit.fill)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
+            flex: 3,
             child: PaginationList<Call>(
               repositoryCallBack: (data) => CallsRepository.getCalls(
                 requestData: data,

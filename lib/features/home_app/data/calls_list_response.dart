@@ -94,7 +94,7 @@ class Leader {
   int? unitId;
   int? departmentId;
   int? ministryId;
-  List<String>? roleNames;
+  //List<String>? roleNames;
 
   Leader(
       {this.id,
@@ -111,7 +111,8 @@ class Leader {
       this.unitId,
       this.departmentId,
       this.ministryId,
-      this.roleNames});
+      //this.roleNames
+  });
 
   Leader.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -128,7 +129,7 @@ class Leader {
     unitId = json['unitId'];
     departmentId = json['departmentId'];
     ministryId = json['ministryId'];
-    roleNames = json['roleNames'].cast<String>();
+    //roleNames = json['roleNames'].cast<String>();
   }
 
   Map<String, dynamic> toJson() {
@@ -147,7 +148,7 @@ class Leader {
     data['unitId'] = unitId;
     data['departmentId'] = departmentId;
     data['ministryId'] = ministryId;
-    data['roleNames'] = roleNames;
+    //data['roleNames'] = roleNames;
     return data;
   }
 }
