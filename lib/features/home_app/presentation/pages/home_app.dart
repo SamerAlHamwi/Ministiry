@@ -13,6 +13,7 @@ import '../../../../core/constants/app_theme.dart';
 import '../../../../core/utils/Navigation/Navigation.dart';
 import '../../domain/repositories/appointment_repository.dart';
 import '../widgets/appointment_list_card.dart';
+import 'appointment_history_page.dart';
 
 class HomeApp extends StatelessWidget {
   const HomeApp({Key? key}) : super(key: key);
@@ -23,11 +24,12 @@ class HomeApp extends StatelessWidget {
         backgroundColor: Colors.white,
         key: Keys.scaffoldKey,
         appBar: AppBar(
+          backgroundColor: Colors.transparent,
           leading: IconButton(icon: const Icon(Icons.logout), onPressed: () {
             showDialog(context: context, builder:
                 (context) {
               return AlertDialog(
-                title: Text('Are you sure?'.tr()),
+                title: Text('Are you sure?'.tr(),),
                 actions: [
                   FilledButton(onPressed: () {
                     RemoteDataSource.logOut();
@@ -39,10 +41,12 @@ class HomeApp extends StatelessWidget {
             });
           }),
           actions: [
-            IconButton(icon: const Icon(Icons.history, color: Colors.white), onPressed: () {}),
+            IconButton(icon: const Icon(Icons.history, color: AppColors.primaryColor), onPressed: () {
+              Navigation.push(const AppointmentHistoryPage());
+            }),
           ],
-          iconTheme: const IconThemeData(color: Colors.white),
-          title: Text('Calls'.tr()),
+          iconTheme: const IconThemeData(color: AppColors.primaryColor),
+          title: Text('Calls'.tr(), style: TextStyle(color: AppColors.primaryColor)),
         ),
         body: _getBodyWidget());
   }
