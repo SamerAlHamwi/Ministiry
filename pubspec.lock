@@ -680,18 +680,20 @@ packages:
   jitsi_meet_wrapper:
     dependency: "direct main"
     description:
-      name: jitsi_meet_wrapper
-      sha256: "7459a792215042e05b4e2380fb1f5467df8bccc82a254c674cd325812fbe219f"
-      url: "https://pub.dev"
-    source: hosted
+      path: jitsi_meet_wrapper
+      ref: main
+      resolved-ref: f5213f9ccd35ff7e4659ed2cc76f047a806765b7
+      url: "https://github.com/mosab-omari/jitsi_meet_wrapper"
+    source: git
     version: "0.0.6"
   jitsi_meet_wrapper_platform_interface:
     dependency: transitive
     description:
-      name: jitsi_meet_wrapper_platform_interface
-      sha256: "3ad496e47b6f4de81bf52847b965fe967ca94a5a08cb68c3498dfb1e6beb0d86"
-      url: "https://pub.dev"
-    source: hosted
+      path: jitsi_meet_wrapper_platform_interface
+      ref: main
+      resolved-ref: f5213f9ccd35ff7e4659ed2cc76f047a806765b7
+      url: "https://github.com/mosab-omari/jitsi_meet_wrapper"
+    source: git
     version: "0.0.4"
   js:
     dependency: transitive
