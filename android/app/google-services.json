@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "380846776885",
+    "project_id": "ministrysystem",
+    "storage_bucket": "ministrysystem.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380846776885:android:60404c401c481df0e5077c",
+        "android_client_info": {
+          "package_name": "com.itland.ministries_system"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "380846776885-mdag828g6hu7hlho24g9lpa5o118sc9p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVwvmvFyfBy5iwfWb4pl_TT7HxAV2v5e0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "380846776885-mdag828g6hu7hlho24g9lpa5o118sc9p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
