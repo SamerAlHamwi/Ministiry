@@ -30,7 +30,7 @@ class Jitsi {
 
   _call() async {
     Map<FeatureFlag, bool> featureFlags = {
-      FeatureFlag.isPrejoinPageEnabled: false,
+      //FeatureFlag.isPrejoinPageEnabled: false,
       FeatureFlag.isNotificationsEnabled: false,
       // FeatureFlag.isWelcomePageEnabled: false,
       FeatureFlag.isInviteEnabled: true,
