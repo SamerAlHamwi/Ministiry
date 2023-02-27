@@ -122,6 +122,10 @@ class CallListCard extends StatelessWidget {
                   ),
                 ],
               ),
+              Text(
+                " ${"Patient Name".tr()}: ${call.id!}",
+                style: AppTheme.bodyText1,
+              ),
             ],
           ),
         ],
