@@ -22,6 +22,7 @@ class HomeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
+        extendBodyBehindAppBar: true,
         key: Keys.scaffoldKey,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -42,16 +43,16 @@ class HomeApp extends StatelessWidget {
           }),
           actions: [
             IconButton(icon: const Icon(Icons.history, color: AppColors.primaryColor), onPressed: () {
-              Navigation.push(const AppointmentHistoryPage());
+              Navigation.push(const AppointmentsHistoryPage());
             }),
           ],
           iconTheme: const IconThemeData(color: AppColors.primaryColor),
           title: Text('Calls'.tr(), style: TextStyle(color: AppColors.primaryColor)),
         ),
-        body: _getBodyWidget());
+        body: _getBodyWidget(context));
   }
 
-  Container _getBodyWidget() {
+  Container _getBodyWidget(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
       width: double.infinity,
@@ -62,15 +63,18 @@ class HomeApp extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          const SizedBox(height: 40,),
           Expanded(
-            flex: 3,
-            child: PaginationList<Call>(
-              repositoryCallBack: (data) => CallsRepository.getCalls(
-                requestData: data,
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width/ 1.1,
+              child: PaginationList<Call>(
+                repositoryCallBack: (data) => CallsRepository.getCalls(
+                  requestData: data,
+                ),
+                listBuilder: (List<Call> list) {
+                  return _getUpcomingAppointments(list);
+                },
               ),
-              listBuilder: (List<Call> list) {
-                return _getUpcomingAppointments(list);
-              },
             ),
           ),
         ],

@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:ministry_minister_app/core/api/data_source/remote_data_source.dart';
 import 'dart:ui' as UI;
 
 import '../../../../core/api/core_models/empty_model.dart';
@@ -14,6 +15,8 @@ import '../../../../core/utils/jitsi_video_meeting/video_meeting_service.dart';
 import '../../../../core/utils/service_locator/service_locator.dart';
 import '../../data/calls_list_response.dart';
 import '../../domain/repositories/appointment_repository.dart';
+import '../../domain/repositories/call_reception_repo.dart';
+import 'call_action_button.dart';
 
 class CallListCard extends StatelessWidget {
   final Call call;
@@ -32,101 +35,102 @@ class CallListCard extends StatelessWidget {
 
   Widget _buildCallCard(context) {
     return Container(
+      width: 50,
+      margin: const EdgeInsets.symmetric(vertical: 10),
       padding: const EdgeInsets.all(20),
-      margin: const EdgeInsets.only(bottom: 15),
       decoration: BoxDecoration(
-        border: Border.all(width: 1, color: AppColors.grey),
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Wrap(
+          color: call!.callStatus == 1
+              ? AppColors.primarySwatch[100]
+              : call!.callStatus == 2
+              ? AppColors.green
+              : AppColors.secondaryColor,
+          borderRadius: BorderRadius.circular(10)),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          // Date and time
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // Healthcare center
-                  Row(
-                    children: [
-                      // Healthcare center name and address
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          // Doctor Photo
-
-                          const SizedBox(
-                            width: 10,
-                          ),
-
-                          // Doctor name and center name
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // Doctor name
-                              Text(
-                                call.screen?.name! ?? '',
-                                style: AppTheme.headline3,
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
+                  const Icon(Icons.date_range, color: AppColors.primaryColor),
+                  const SizedBox(width: 8),
+                  Text(
+                    "${"date".tr()} : ",
+                    style: AppTheme.headline3
+                        .copyWith(color: AppColors.primaryColor),
                   ),
+                  Text(call.creationTime!.split("T")[0].toString(),
+                      style:
+                      AppTheme.headline3.copyWith(color: AppColors.primaryColor,fontWeight: FontWeight.w700))
                 ],
               ),
-
-              const SizedBox(
-                height: 15,
-              ),
-
-              // Date and time container
-              _getDateContainer(),
-
-              const SizedBox(
-                height: 10,
-              ),
-
-              // Patient  name
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-Container(),
-                  Row(
-                    children: [
-                      Container(
-                        height: 8,
-                        width: 8,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color:
-                                _getStatusColor(_getStatus(call.callStatus!))),
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        _getStatus(call.callStatus!),
-                        style: AppTheme.bodyText1,
-                      ),
-                    ],
+                  const Icon(
+                    Icons.access_time_outlined,
+                    color: AppColors.primaryColor,
                   ),
+                  const SizedBox(width: 8),
+                  Text("${"time".tr()} : ",
+                      style: AppTheme.headline3
+                          .copyWith(color: AppColors.primaryColor)),
+                  Text(DateTime.tryParse('${call!.creationTime!}Z')!.toLocal().toString().split('.')[0].toString().split(" ")[1].toString(),
+                      style: AppTheme.headline3.copyWith(
+                          color: AppColors.primaryColor,
+                          fontWeight: FontWeight.w700))
                 ],
               ),
+            ],
+          ),
+
+          const SizedBox(
+            height: 15,
+          ),
+
+          // Date and time container
+          _getButtons(),
+
+          const SizedBox(
+            height: 10,
+          ),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
               Text(
                 " ${"Order Number".tr()}: ${call.orderNumber}",
                 style: AppTheme.bodyText1,
               ),
+
+              Row(
+                children: [
+                  Container(
+                    height: 8,
+                    width: 8,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color:
+                        _getStatusColor(_getStatus(call.callStatus!))),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    _getStatus(call.callStatus!),
+                    style: AppTheme.bodyText1,
+                  ),
+                ],
+              ),
+
             ],
           ),
+
+
         ],
-      ),
+      )
     );
   }
 
@@ -135,111 +139,71 @@ Container(),
   }
 
   _getStatusColor(String status) {
-    if (status == "Pending".tr()) {
+    if (status == "Waiting".tr()) {
       return Colors.yellow;
-    } else if (status == "Declined".tr()) {
+    } else if (status == "Treated".tr()) {
+      return Colors.green;
+    } else if (status == "Canceled".tr()) {
       return Colors.redAccent;
-    } else if (status == "Approved".tr()) {
+    }
+    else if (status == "Active".tr()) {
       return Colors.green;
     }
   }
 
   String _getStatus(int status) {
     if (status == 1) {
-      return "Pending".tr();
+      return "Waiting".tr();
     } else if (status == 2) {
-      return "Approved".tr();
+      return "Treated".tr();
     } else if (status == 3) {
-      return "Declined".tr();
+      return "Canceled".tr();
     }
-    return "Pending".tr();
+    else if (status == 4) {
+      return "Active".tr();
+    }
+    return "Active".tr();
   }
 
-  Widget _getDateContainer() {
-    return call.callStatus == 1
-        ? InkWell(
-            onTap: () {
-              if (active) {
-                VideoMeetingService.startMeeting(
-                  roomText: call.room!,
-                  serverUrl: call.link!,
-                  meetingId: call.id!,
-                );
-              }
-            },
-            child: Container(
-              alignment: Alignment.center,
-              width: double.infinity,
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  color: AppColors.buttonTextColor,
-                  borderRadius: BorderRadius.circular(15)),
-              child:
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                const Icon(
-                  Icons.videocam_rounded,
-                  color: AppColors.white,
-                  size: 22,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Text('Join Call'.tr(),
-                    style: AppTheme.headline3.copyWith(color: Colors.white))
-              ]),
-            ),
-          )
-        : InkWell(
-            onTap: () {},
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  // color: call.healthCareCenter!.name == null
-                  //     ? AppColors.buttonTextColor
-                  //     : AppColors.primaryColor,
-                  borderRadius: BorderRadius.circular(15)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // Date Row
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.date_range_rounded,
-                          color: AppColors.white),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        call.screenJoinedDate!,
-                        // getDate(call.screenJoinedDate!),
-                        style:
-                            AppTheme.subtitle1.copyWith(color: AppColors.white),
-                      ),
-                    ],
-                  ),
+  CreateModelCubit? CancleCallRequestCubit;
 
-                  // Time Row
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.access_time_rounded,
-                          color: AppColors.white),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        DateFormat("hh:mm a")
-                            .format(DateTime.parse(call.screenJoinedDate!)),
-                        style:
-                            AppTheme.subtitle1.copyWith(color: AppColors.white),
-                        textDirection: UI.TextDirection.ltr,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+  _buildCancelButton() {
+    return CreateModel<EmptyModel>(
+        onSuccess: (EmptyModel model) {},
+        repositoryCallBack: (data) => CallReceptionRepo.CancleCallRequest(data),
+        onCubitCreated: (CreateModelCubit cubit) {
+          CancleCallRequestCubit = cubit;
+        },
+        child: CallActionsButton(
+            buttonText: "cancel".tr(),
+            buttonColor: AppColors.lightBlueColor,
+            textColor: AppColors.white,
+            onTap: () {
+              CancleCallRequestCubit!.createModel(call!.id!);
+            }));
+  }
+
+  Widget _getButtons() {
+    return  Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            CallActionsButton(
+              onTap: () async{
+                if (active) {
+                  await CallsRepository.joinCall(id: call.id!);
+                  VideoMeetingService.startMeeting(
+                    roomText: call.room!,
+                    serverUrl: call.link!,
+                    meetingId: call.id!,
+                  );
+                }
+              },
+              buttonColor: AppColors.primaryColor,
+              buttonText: 'join_call'.tr(),
+              textColor: Colors.white,
             ),
-          );
+            _buildCancelButton(),
+          ],
+        );
   }
 }

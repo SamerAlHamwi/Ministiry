@@ -36,7 +36,18 @@
   "enter_national_number": "Please enter your Civil ID or Disability Number",
   "national_number": "Civil ID",
   "next": "next",
-  "appointments": "Appointments"
+  "appointments": "Appointments",
+  "join_call": "Join Call",
+  "Order Number": "Order Number",
+  "Calls": "Calls",
+  "calls_history": "Calls History",
+  "cancel": "Cancel",
+  "Waiting": "Waiting",
+  "Treated": "Treated",
+  "Canceled": "Canceled",
+  "Active": "Active"
+
+
 
 
 }

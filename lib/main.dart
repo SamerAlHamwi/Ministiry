@@ -38,8 +38,8 @@ void main() async {
     EasyLocalization(
       supportedLocales: LANGUAGES.values.toList(),
       path: 'assets/locales',
-      fallbackLocale: const Locale('en'),
-      startLocale: const Locale('en'),
+      fallbackLocale: const Locale('ar'),
+      startLocale: const Locale('ar'),
       saveLocale: true,
       child: Phoenix(
           child: ScreenUtilInit(
