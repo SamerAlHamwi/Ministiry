@@ -13,7 +13,6 @@ import '../../../../core/constants/app_theme.dart';
 import '../../../../core/utils/Navigation/Navigation.dart';
 import '../../domain/repositories/appointment_repository.dart';
 import '../widgets/appointment_list_card.dart';
-import '../widgets/call_card.dart';
 import 'appointment_history_page.dart';
 
 class HomeApp extends StatelessWidget {

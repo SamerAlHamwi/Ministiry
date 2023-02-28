@@ -25,7 +25,7 @@ class AppointmentsHistoryPage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           iconTheme: const IconThemeData(color: AppColors.primaryColor),
-          title: Text('Calls History'.tr(), style: TextStyle(color: AppColors.primaryColor)),
+          title: Text('calls_history'.tr(), style: const TextStyle(color: AppColors.primaryColor)),
         ),
         body: _getBodyWidget(context));
   }

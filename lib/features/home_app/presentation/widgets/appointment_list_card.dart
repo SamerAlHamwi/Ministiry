@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:ministry_minister_app/core/api/data_source/remote_data_source.dart';
 import 'dart:ui' as UI;
 
 import '../../../../core/api/core_models/empty_model.dart';
@@ -187,8 +188,9 @@ class CallListCard extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             CallActionsButton(
-              onTap: () {
+              onTap: () async{
                 if (active) {
+                  await CallsRepository.joinCall(id: call.id!);
                   VideoMeetingService.startMeeting(
                     roomText: call.room!,
                     serverUrl: call.link!,

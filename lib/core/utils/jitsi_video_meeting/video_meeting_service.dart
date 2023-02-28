@@ -1,4 +1,5 @@
 
+import '../../../features/home_app/domain/repositories/appointment_repository.dart';
 import '../../constants/constants.dart';
 import '../../notification/data/fcm_notification_model.dart';
 import 'package:quiver/async.dart';
@@ -33,6 +34,7 @@ class VideoMeetingService {
         nameText: displayName,
         serverUrl: serverUrl,
         onLeave: () async {
+          await CallsRepository.leaveCall(id: meetingId);
           await Future.delayed(const Duration(seconds: 5));
           AppSharedPreferences.isInCall = false;
           try {

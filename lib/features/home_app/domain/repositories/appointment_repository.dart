@@ -18,4 +18,27 @@ class CallsRepository {
     );
   }
 
+  static Future<BaseResultModel> joinCall(
+      {required int id}) async {
+    return await RemoteDataSource.request<EmptyModel>(
+      converter: (json) => EmptyModel.fromJson(json),
+      method: HttpMethod.post,
+      withAuthentication: true,
+      data: {"id": id},
+      url: ApiURLs.joinCall,
+    );
+  }
+
+  static Future<BaseResultModel> leaveCall(
+      {required int id}) async {
+    return await RemoteDataSource.request<EmptyModel>(
+      converter: (json) => EmptyModel.fromJson(json),
+      method: HttpMethod.post,
+      withAuthentication: true,
+      data: {"id": id},
+      url: ApiURLs.leaveCall,
+    );
+  }
+
+
 }

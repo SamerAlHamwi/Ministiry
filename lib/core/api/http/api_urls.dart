@@ -17,4 +17,6 @@ class   ApiURLs {
   ///Calls
   static const String callUrl = '${appUrl}Call/';
   static const String getAllCalls = '${callUrl}GetAll';
+  static const String joinCall = '${callUrl}JoinCall';
+  static const String leaveCall = '${callUrl}LeaveCall';
 }
