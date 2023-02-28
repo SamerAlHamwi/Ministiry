@@ -39,11 +39,7 @@ class CallListCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 10),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-          color: call!.callStatus == 1
-              ? AppColors.primarySwatch[100]
-              : call!.callStatus == 2
-              ? AppColors.green
-              : AppColors.secondaryColor,
+          color: AppColors.primarySwatch[100],
           borderRadius: BorderRadius.circular(10)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

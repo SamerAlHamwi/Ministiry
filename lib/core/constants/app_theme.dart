@@ -115,19 +115,13 @@ class AppTheme {
       headline6: headline6);
 
   static TextStyle bodyText1 = TextStyle(
-      fontSize: 14,
+      fontSize: 12,
       fontFamily: AppSharedPreferences.lang == "ar" ? "Tajawal" : "Outfit",
       color: AppColors.black);
   static TextStyle bodyText2 = TextStyle(
-      fontSize: 12,
+      fontSize: 10,
       fontWeight: FontWeight.w600,
       fontFamily: AppSharedPreferences.lang == "ar" ? "Tajawal" : "Outfit");
-  static TextStyle bodyText3 = TextStyle(
-      fontSize: 12,
-      fontWeight: FontWeight.normal,
-      fontFamily:
-          AppSharedPreferences.lang == "ar" ? "Tajawal" : "Outfit-Regular",
-      color: AppColors.white); // default for Text() widget
   static TextStyle button = TextStyle(
       fontSize: 12,
       fontFamily: AppSharedPreferences.lang == "ar" ? "Tajawal" : "Outfit");
@@ -146,7 +140,7 @@ class AppTheme {
       fontFamily: AppSharedPreferences.lang == "ar" ? "Tajawal" : "Outfit",
       color: AppColors.white);
   static TextStyle headline3 = TextStyle(
-      fontSize: 16,
+      fontSize: 14,
       fontWeight: FontWeight.w600,
       fontFamily: AppSharedPreferences.lang == "ar" ? "Tajawal" : "Outfit",
       color: AppColors.black);

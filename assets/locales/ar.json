@@ -39,7 +39,9 @@
   "join_call": "الدخول للمكالمة",
   "Order Number": "رقم الطلب",
   "Calls": "المكالمات",
-  "cancel": "الغاء",
+  "calls_history": "سجل المكالمات",
+
+  "cancel": "إلغاء الطلب",
   "Waiting": "انتظار",
   "Treated": "معالجة",
   "Canceled": "ملغاة",
