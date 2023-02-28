@@ -28,6 +28,7 @@ class CallsListResponse extends ListResultModel<Call> {
 
 class Call {
   int? id;
+  String? creationTime;
   String? orderNumber;
   String? screenJoinedDate;
   String? screenLeaveDate;
@@ -41,6 +42,7 @@ class Call {
   Call(
       {this.id,
       this.screenJoinedDate,
+      this.creationTime,
       this.screenLeaveDate,
       this.numberOfCallMinutes,
       this.callStatus,
@@ -52,6 +54,7 @@ class Call {
   Call.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     screenJoinedDate = json['screenJoinedDate'];
+    creationTime = json['creationTime'];
     screenLeaveDate = json['screenLeaveDate'];
     numberOfCallMinutes = json['numberOfCallMinutes'];
     callStatus = json['callStatus'];
@@ -66,6 +69,7 @@ class Call {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['screenJoinedDate'] = screenJoinedDate;
+    data['creationTime'] = creationTime;
     data['screenLeaveDate'] = screenLeaveDate;
     data['numberOfCallMinutes'] = numberOfCallMinutes;
     data['callStatus'] = callStatus;

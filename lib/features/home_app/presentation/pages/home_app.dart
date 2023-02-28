@@ -13,6 +13,7 @@ import '../../../../core/constants/app_theme.dart';
 import '../../../../core/utils/Navigation/Navigation.dart';
 import '../../domain/repositories/appointment_repository.dart';
 import '../widgets/appointment_list_card.dart';
+import '../widgets/call_card.dart';
 import 'appointment_history_page.dart';
 
 class HomeApp extends StatelessWidget {
@@ -22,6 +23,7 @@ class HomeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
+        extendBodyBehindAppBar: true,
         key: Keys.scaffoldKey,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -62,6 +64,7 @@ class HomeApp extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          const SizedBox(height: 40,),
           Expanded(
             flex: 3,
             child: PaginationList<Call>(
