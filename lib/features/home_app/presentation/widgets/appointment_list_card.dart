@@ -146,11 +146,14 @@ Container(),
 
   String _getStatus(int status) {
     if (status == 1) {
-      return "Pending".tr();
+      return "Waiting".tr();
     } else if (status == 2) {
-      return "Approved".tr();
+      return "Treated".tr();
     } else if (status == 3) {
-      return "Declined".tr();
+      return "Canceled".tr();
+    }
+    else if (status == 4) {
+      return "Active".tr();
     }
     return "Pending".tr();
   }
