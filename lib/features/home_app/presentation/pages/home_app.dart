@@ -44,7 +44,7 @@ class HomeApp extends StatelessWidget {
           }),
           actions: [
             IconButton(icon: const Icon(Icons.history, color: AppColors.primaryColor), onPressed: () {
-              Navigation.push(const AppointmentHistoryPage());
+              Navigation.push(const AppointmentsHistoryPage());
             }),
           ],
           iconTheme: const IconThemeData(color: AppColors.primaryColor),
