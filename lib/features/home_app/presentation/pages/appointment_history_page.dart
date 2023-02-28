@@ -21,7 +21,6 @@ class AppointmentsHistoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        extendBodyBehindAppBar: true,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           iconTheme: const IconThemeData(color: AppColors.primaryColor),
