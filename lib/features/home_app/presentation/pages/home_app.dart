@@ -50,10 +50,10 @@ class HomeApp extends StatelessWidget {
           iconTheme: const IconThemeData(color: AppColors.primaryColor),
           title: Text('Calls'.tr(), style: TextStyle(color: AppColors.primaryColor)),
         ),
-        body: _getBodyWidget());
+        body: _getBodyWidget(context));
   }
 
-  Container _getBodyWidget() {
+  Container _getBodyWidget(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
       width: double.infinity,
@@ -66,14 +66,16 @@ class HomeApp extends StatelessWidget {
         children: [
           const SizedBox(height: 40,),
           Expanded(
-            flex: 3,
-            child: PaginationList<Call>(
-              repositoryCallBack: (data) => CallsRepository.getCalls(
-                requestData: data,
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width/ 1.1,
+              child: PaginationList<Call>(
+                repositoryCallBack: (data) => CallsRepository.getCalls(
+                  requestData: data,
+                ),
+                listBuilder: (List<Call> list) {
+                  return _getUpcomingAppointments(list);
+                },
               ),
-              listBuilder: (List<Call> list) {
-                return _getUpcomingAppointments(list);
-              },
             ),
           ),
         ],

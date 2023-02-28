@@ -63,7 +63,7 @@ class CallListCard extends StatelessWidget {
                   ),
                   Text(call.creationTime!.split("T")[0].toString(),
                       style:
-                      AppTheme.headline3.copyWith(color: AppColors.offWhite,fontWeight: FontWeight.w700))
+                      AppTheme.headline3.copyWith(color: AppColors.primaryColor,fontWeight: FontWeight.w700))
                 ],
               ),
               Row(
@@ -78,7 +78,7 @@ class CallListCard extends StatelessWidget {
                           .copyWith(color: AppColors.primaryColor)),
                   Text(DateTime.tryParse('${call!.creationTime!}Z')!.toLocal().toString().split('.')[0].toString().split(" ")[1].toString(),
                       style: AppTheme.headline3.copyWith(
-                          color: AppColors.offWhite,
+                          color: AppColors.primaryColor,
                           fontWeight: FontWeight.w700))
                 ],
               ),
