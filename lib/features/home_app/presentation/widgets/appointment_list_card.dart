@@ -97,10 +97,7 @@ class CallListCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    " ${"Patient Name".tr()}: ${call.screen?.name!}",
-                    style: AppTheme.bodyText1,
-                  ),
+Container(),
                   Row(
                     children: [
                       Container(
@@ -123,7 +120,7 @@ class CallListCard extends StatelessWidget {
                 ],
               ),
               Text(
-                " ${"Patient Name".tr()}: ${call.id!}",
+                " ${"Order Number".tr()}: ${call.orderNumber}",
                 style: AppTheme.bodyText1,
               ),
             ],

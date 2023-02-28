@@ -28,6 +28,7 @@ class CallsListResponse extends ListResultModel<Call> {
 
 class Call {
   int? id;
+  String? orderNumber;
   String? screenJoinedDate;
   String? screenLeaveDate;
   int? numberOfCallMinutes;
@@ -58,6 +59,7 @@ class Call {
     room = json['room'];
     leader = json['leader'] != null ? Leader.fromJson(json['leader']) : null;
     screen = json['screen'] != null ? Leader.fromJson(json['screen']) : null;
+    orderNumber = json['orderNumber'];
   }
 
   Map<String, dynamic> toJson() {
@@ -94,24 +96,25 @@ class Leader {
   int? unitId;
   int? departmentId;
   int? ministryId;
+
   //List<String>? roleNames;
 
-  Leader(
-      {this.id,
-      this.userName,
-      this.name,
-      this.userPosition,
-      this.surname,
-      this.emailAddress,
-      this.isActive,
-      this.fullName,
-      this.lastLoginTime,
-      this.creationTime,
-      this.userType,
-      this.unitId,
-      this.departmentId,
-      this.ministryId,
-      //this.roleNames
+  Leader({
+    this.id,
+    this.userName,
+    this.name,
+    this.userPosition,
+    this.surname,
+    this.emailAddress,
+    this.isActive,
+    this.fullName,
+    this.lastLoginTime,
+    this.creationTime,
+    this.userType,
+    this.unitId,
+    this.departmentId,
+    this.ministryId,
+    //this.roleNames
   });
 
   Leader.fromJson(Map<String, dynamic> json) {
