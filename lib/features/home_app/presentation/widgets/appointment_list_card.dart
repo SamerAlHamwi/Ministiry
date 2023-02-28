@@ -35,7 +35,6 @@ class CallListCard extends StatelessWidget {
   Widget _buildCallCard(context) {
     return Container(
       width: 50,
-      height: 220,
       margin: const EdgeInsets.symmetric(vertical: 10),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -49,39 +48,9 @@ class CallListCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                " ${"Order Number".tr()}: ${call.orderNumber}",
-                style: AppTheme.bodyText1,
-              ),
-
-              Row(
-                children: [
-                  Container(
-                    height: 8,
-                    width: 8,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color:
-                        _getStatusColor(_getStatus(call.callStatus!))),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Text(
-                    _getStatus(call.callStatus!),
-                    style: AppTheme.bodyText1,
-                  ),
-                ],
-              ),
-
-            ],
-          ),
           // Date and time
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly ,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
@@ -125,6 +94,37 @@ class CallListCard extends StatelessWidget {
 
           const SizedBox(
             height: 10,
+          ),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                " ${"Order Number".tr()}: ${call.orderNumber}",
+                style: AppTheme.bodyText1,
+              ),
+
+              Row(
+                children: [
+                  Container(
+                    height: 8,
+                    width: 8,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color:
+                        _getStatusColor(_getStatus(call.callStatus!))),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    _getStatus(call.callStatus!),
+                    style: AppTheme.bodyText1,
+                  ),
+                ],
+              ),
+
+            ],
           ),
 
 
@@ -197,7 +197,7 @@ class CallListCard extends StatelessWidget {
                 }
               },
               buttonColor: AppColors.primaryColor,
-              buttonText: 'Join Call'.tr(),
+              buttonText: 'join_call'.tr(),
               textColor: Colors.white,
             ),
             _buildCancelButton(),

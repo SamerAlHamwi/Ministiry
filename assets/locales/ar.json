@@ -35,7 +35,15 @@
   "enter_national_number": "يرجى إدخال الرقم المدني أو رقم الإعاقة",
   "national_number": "الرقم المدني",
   "next": "التالي",
-  "appointments": "المواعيد"
+  "appointments": "المواعيد",
+  "join_call": "الدخول للمكالمة",
+  "Order Number": "رقم الطلب",
+  "Calls": "المكالمات",
+  "cancel": "الغاء",
+  "Waiting": "انتظار",
+  "Treated": "معالجة",
+  "Canceled": "ملغاة",
+  "Active": "نشطة"
 
 
 
