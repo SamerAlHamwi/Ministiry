@@ -26,4 +26,13 @@ enum Positions { TOP, Bottom, LEFT, RIGHT }
 
 enum NotificationType {
   NULL,
+  PushNotification,
+  NewRequestHasPublished,
+  NewCallRequestHasPublished,
+  TheRequestHasTreated,
+  YouShouldJoinCall,
+  TheCallHasCanseld,
+  YouShouldLeaveCall,
+  ScreenLeaveCall,
+  ScreenJoinCall,
 }

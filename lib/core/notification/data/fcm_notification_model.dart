@@ -25,7 +25,7 @@ class FCMNotificationModel {
     if (json['notificationName'] != null) {
       notificationName = json['notificationName'];
     }
-    if (json['type'] != null) type = NotificationType.values[json['type']];
+    if (json['type'] != null) type = NotificationType.values[int.tryParse(json['type'])!];
     if (json['message'] != null) {
       message = json['message'];
     }

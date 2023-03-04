@@ -48,7 +48,6 @@ class AppSharedPreferences {
   static bool get hasAccessToken => _pref?.contains(keyAccessToken) ?? false;
 
   static removeAccessToken() => _pref!.remove(keyAccessToken);
-
   //name
   static String get name => _pref!.read(keyName) ?? '';
 

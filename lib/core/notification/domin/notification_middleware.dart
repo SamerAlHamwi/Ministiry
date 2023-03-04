@@ -1,4 +1,5 @@
 
+import '../../../features/home_app/presentation/pages/home_app.dart';
 import '../../constants/constants.dart';
 import '../data/fcm_notification_model.dart';
 
@@ -11,5 +12,15 @@ class NotificationMiddleware {
     }
   }
 
-  static onRceived(FCMNotificationModel notification) async {}
+  static onRceived(FCMNotificationModel notification) async {
+    if(notification.type!=null){
+      HomeApp.updateWaitingCallList();
+
+        if(notification.type==NotificationType.NewCallRequestHasPublished){
+        HomeApp.updateWaitingCallList();
+      }
+    }
+
+
+  }
 }

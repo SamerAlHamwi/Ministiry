@@ -18,7 +18,7 @@ class CallActionsButton extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-          width: AppDimension.screenWidth(context)*2/10,
+          width: AppDimension.screenWidth(context)*3/10,
           height: 50,
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(

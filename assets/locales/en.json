@@ -22,6 +22,11 @@
   "please_try_again_with_another": "Please try another search",
   "success": "Success",
   "loading": "Loading",
+  "no_data": "No Data",
+  "no_more_data": "No More Data",
+  "release_to_load_more": "Release to load more",
+  "pull_up_load": "Pull up load ",
+  "load_failed": "load failed!",
   "////////////Ministries//////////":"////////////Ministries//////////",
   "in_waiting": "in waiting",
   "date": "Date",
@@ -45,9 +50,10 @@
   "Waiting": "Waiting",
   "Treated": "Treated",
   "Canceled": "Canceled",
-  "Active": "Active"
-
-
-
-
+  "Active": "Active",
+  "logout": "logout",
+  "logout_confirmation": "Logout confirmation",
+  "are_you_sure_you_want_to_logout": "Are you sure you want to logout?",
+  "yes": "Yes",
+  "no": "No"
 }

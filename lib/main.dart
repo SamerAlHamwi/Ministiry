@@ -20,7 +20,6 @@ import 'core/constants/constants.dart';
 import 'core/notification/local_notifications_service.dart';
 import 'core/utils/service_locator/service_locator.dart';
 import 'core/utils/shared_preferences/SharedPreferencesHelper.dart';
-import 'features/home_app/presentation/pages/welcome_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -67,7 +66,7 @@ class MyApp extends StatelessWidget {
           locale: context.locale,
           title: AppSettings.appName,
           home: AppSharedPreferences.hasAccessToken
-              ? const WelcomePage()
+              ?  HomeApp()
               : const LoginPage(),
           material: (_, __) => MaterialAppData(
             scrollBehavior: AppScrollBehavior(),

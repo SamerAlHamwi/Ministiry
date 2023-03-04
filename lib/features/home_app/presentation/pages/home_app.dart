@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ministry_minister_app/core/api/data_source/remote_data_source.dart';
+import 'package:ministry_minister_app/core/boilerplate/pagination/cubits/pagination_cubit.dart';
 import 'package:ministry_minister_app/features/auth/presentation/pages/login_page.dart';
 import 'package:ministry_minister_app/features/home_app/data/calls_list_response.dart';
 
@@ -11,13 +12,29 @@ import '../../../../core/constants/app_assets.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_theme.dart';
 import '../../../../core/utils/Navigation/Navigation.dart';
+import '../../../../core/widgets/logout_popUp_menu_button.dart';
 import '../../domain/repositories/appointment_repository.dart';
 import '../widgets/appointment_list_card.dart';
 import 'appointment_history_page.dart';
 
-class HomeApp extends StatelessWidget {
-  const HomeApp({Key? key}) : super(key: key);
+class HomeApp extends StatefulWidget {
+  static  PaginationCubit? waitingCallCubit;
+  static ScrollController _scrollController = ScrollController();
 
+
+  HomeApp({Key? key}) : super(key: key);
+  @override
+  State<HomeApp> createState() => _HomeAppState();
+
+  static void updateWaitingCallList() {
+    if (HomeApp.waitingCallCubit != null) {
+      HomeApp.waitingCallCubit!.getList();
+      _scrollController.animateTo(0,duration: Duration(seconds: 1), curve: Curves.linear);
+    }
+  }
+}
+
+class _HomeAppState extends State<HomeApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,21 +42,7 @@ class HomeApp extends StatelessWidget {
         key: Keys.scaffoldKey,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          leading: IconButton(icon: const Icon(Icons.logout), onPressed: () {
-            showDialog(context: context, builder:
-                (context) {
-              return AlertDialog(
-                title: Text('Are you sure?'.tr(),),
-                actions: [
-                  FilledButton(onPressed: () {
-                    RemoteDataSource.logOut();
-                    Navigation.push(const LoginPage());
-                  }, child: Text('Yes'.tr())),
-                  FilledButton(onPressed: () {Navigator.pop(context);}, child: Text('No'.tr())),
-                ],
-              );
-            });
-          }),
+          leading:LogoutPopupMenuButton(),
           actions: [
             IconButton(icon: const Icon(Icons.history, color: AppColors.primaryColor), onPressed: () {
               Navigation.push(const AppointmentsHistoryPage());
@@ -62,11 +65,14 @@ class HomeApp extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(height: 40,),
+          const SizedBox(height: 40),
           Expanded(
             child: SizedBox(
               width: MediaQuery.of(context).size.width/ 1.1,
               child: PaginationList<Call>(
+                onCubitCreated: (cubit){
+                HomeApp.waitingCallCubit=cubit;
+              },
                 repositoryCallBack: (data) => CallsRepository.getCalls(
                   requestData: data,
                 ),
@@ -83,9 +89,11 @@ class HomeApp extends StatelessWidget {
 
   ListView _getUpcomingAppointments(List<Call> list) {
     return ListView(
+      controller:HomeApp._scrollController,
         children: List.generate(
             list.length,
             (index) => CallListCard(
+              key: GlobalKey(),
                   call: list[index],
                 )));
   }

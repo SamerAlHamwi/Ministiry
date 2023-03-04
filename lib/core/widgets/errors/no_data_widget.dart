@@ -12,7 +12,7 @@ class NoDataWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseErrorWidget(
       onTap: null,
-      title: message ?? 'No Data'.tr(),
+      title: message ?? 'no_data'.tr(),
       subtitle: '',
       icon: Image.asset(
         AppAssets.searchHeart,

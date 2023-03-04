@@ -22,11 +22,16 @@
   "please_try_again_with_another": "الرجاء محاولة بحث آخر",
   "success": "تم بنجاح",
   "loading": "جاري العمل...",
+  "no_data": "لا يوجد بيانات",
+  "no_more_data": "لا يوجد بيانات أكثر",
+  "release_to_load_more": "حرر لتحميل المزيد",
+  "pull_up_load": "اسحب للتحميل",
+  "load_failed": "فشل التحميل!",
   "////////////Ministries//////////":"////////////Ministries//////////",
   "in_waiting": "في الانتظار",
   "date": "التاريخ",
   "time": "الوقت",
-  "user_name": "اسم المسنخدم",
+  "user_name": "اسم المستخدم",
   "password": "كلمة السر",
   "login": "تسجيل الدخول",
   "start_here": "ابدأ هنا",
@@ -45,8 +50,10 @@
   "Waiting": "انتظار",
   "Treated": "معالجة",
   "Canceled": "ملغاة",
-  "Active": "نشطة"
-
-
-
+  "Active": "نشطة",
+  "logout": "تسجيل الخروج",
+  "logout_confirmation": "تأكيد الخروج",
+  "are_you_sure_you_want_to_logout": "هل أنت متأكد من رغبتك في تسجيل الخروج؟",
+  "yes": "نعم",
+  "no": "لا"
 }

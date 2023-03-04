@@ -1,21 +1,16 @@
-import 'package:flutter/foundation.dart';
-import 'package:ministry_minister_app/core/api/data_source/remote_data_source.dart';
-import 'dart:ui' as UI;
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../core/api/core_models/empty_model.dart';
 import '../../../../core/boilerplate/create_model/cubits/create_model_cubit.dart';
 import '../../../../core/boilerplate/create_model/widgets/create_model.dart';
-import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_theme.dart';
 import '../../../../core/utils/jitsi_video_meeting/video_meeting_service.dart';
-import '../../../../core/utils/service_locator/service_locator.dart';
 import '../../data/calls_list_response.dart';
 import '../../domain/repositories/appointment_repository.dart';
 import '../../domain/repositories/call_reception_repo.dart';
+import '../pages/home_app.dart';
 import 'call_action_button.dart';
 
 class CallListCard extends StatelessWidget {
@@ -93,39 +88,34 @@ class CallListCard extends StatelessWidget {
             height: 10,
           ),
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                " ${"Order Number".tr()}: ${call.orderNumber}",
-                style: AppTheme.bodyText1,
-              ),
-
-              Row(
-                children: [
-                  Container(
-                    height: 8,
-                    width: 8,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color:
-                        _getStatusColor(_getStatus(call.callStatus!))),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Text(
-                    _getStatus(call.callStatus!),
-                    style: AppTheme.bodyText1,
-                  ),
-                ],
-              ),
-
-            ],
-          ),
-
-
-        ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  " ${"Order Number".tr()}: ${call.orderNumber}",
+                  style: AppTheme.bodyText1,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      height: 8,
+                      width: 8,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: _getStatusColor(_getStatus(call.callStatus!))),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      _getStatus(call.callStatus!),
+                      style: AppTheme.bodyText1,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
       )
     );
   }
@@ -175,7 +165,9 @@ class CallListCard extends StatelessWidget {
             buttonColor: AppColors.lightBlueColor,
             textColor: AppColors.white,
             onTap: () {
-              CancleCallRequestCubit!.createModel(call!.id!);
+              CancleCallRequestCubit!.createModel(call!.id!).then((value)  {HomeApp.updateWaitingCallList();});
+
+
             }));
   }
 

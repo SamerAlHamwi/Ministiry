@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:ministry_minister_app/core/notification/notification.dart';
+import '../../../features/auth/presentation/pages/login_page.dart';
 import '../../constants/constants.dart';
 
+import '../../utils/Navigation/Navigation.dart';
 import '../../utils/shared_preferences/SharedPreferencesHelper.dart';
 import '../core_models/base_result_model.dart';
 import '../errors/unauthorized_error.dart';
@@ -77,7 +80,9 @@ class RemoteDataSource {
   }
 
   static logOut() {
-    AppSharedPreferences.clearForLogOut();
-    // Navigation.pushAndRemoveUntil(const LoginPage());
+    AppSharedPreferences.removeAccessToken();
+    if(Messaging.token!=null){
+      Messaging.deleteToken();}
+     Navigation.pushAndRemoveUntil(const LoginPage());
   }
 }
