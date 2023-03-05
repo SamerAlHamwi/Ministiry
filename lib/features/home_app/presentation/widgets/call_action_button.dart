@@ -19,7 +19,7 @@ class CallActionsButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
           width: AppDimension.screenWidth(context)*3/10,
-          height: 50,
+          height: 40,
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
               color: buttonColor, borderRadius: BorderRadius.circular(15)),

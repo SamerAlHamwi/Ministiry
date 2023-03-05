@@ -22,14 +22,16 @@ import 'core/utils/service_locator/service_locator.dart';
 import 'core/utils/shared_preferences/SharedPreferencesHelper.dart';
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   DartPluginRegistrant.ensureInitialized();
-
-  await LocalNotificationService().init();
-  if (Platform.isAndroid || Platform.isIOS) await Firebase.initializeApp();
-  await Messaging.initFCM();
-  ServiceLocator.registerModels();
   await AppSharedPreferences.init();
+
+  if (Platform.isAndroid || Platform.isIOS) await Firebase.initializeApp();
+  await LocalNotificationService().init();
+  await Messaging.initFCM();
+
+  ServiceLocator.registerModels();
 
   await EasyLocalization.ensureInitialized();
 

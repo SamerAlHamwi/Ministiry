@@ -11,7 +11,7 @@ class   ApiURLs {
 
   ///USER
   static const String userUrl = '${appUrl}User/';
-  static const setFCMToken = '${userUrl}setCurrentFcmToken/';
+  static const String setFCMToken = '${userUrl}setCurrentFcmToken/';
   static const String loginUrl = '${authUrl}Authenticate';
 
   ///Calls

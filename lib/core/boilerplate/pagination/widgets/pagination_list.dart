@@ -6,6 +6,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../../../widgets/animations/fade_animation.dart';
 import '../../../widgets/errors/ErrorsWidget.dart';
 import '../../../widgets/errors/no_data_widget.dart';
+import '../../../widgets/loading/loading.dart';
 import '../../../widgets/loading_footer.dart';
 import '../cubits/pagination_cubit.dart';
 
@@ -81,7 +82,7 @@ class PaginationListState<Model> extends State<PaginationList<Model>> {
         },
         builder: (context, state) {
           if (state is Loading) {
-            return const Center(child: CupertinoActivityIndicator(radius: 15));
+            return const Center(child:LoadingIndicator() /*CupertinoActivityIndicator(radius: 15)*/);
           } else if (state is GetListSuccessfully) {
             return smartRefresher(state.list as List<Model>);
           } else if (state is Error) {

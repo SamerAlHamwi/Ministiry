@@ -1,8 +1,9 @@
+import 'dart:io';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_fcm/flutter_fcm.dart';
-
 import '../constants/Keys.dart';
 import '../utils/shared_preferences/SharedPreferencesHelper.dart';
 import 'data/fcm_notification_model.dart';
@@ -35,11 +36,11 @@ class Messaging {
           var notification = FCMNotificationModel.fromJson(data);
           NotificationMiddleware.forward(notification);
         },
-        onTokenChanged: (String? token) {
+        onTokenChanged: (String? token) async{
           if (token != null) {
             Messaging.token = token;
             if (AppSharedPreferences.hasAccessToken) {
-              NotificationCubit.updateFCMToken(Messaging.token);
+             await NotificationCubit.updateFCMToken(Messaging.token);
               if (kDebugMode) {
                 print('FCM Token  $token');
               }

@@ -1,17 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/api/core_models/empty_model.dart';
 import '../../../../core/boilerplate/create_model/cubits/create_model_cubit.dart';
-import '../../../../core/boilerplate/create_model/widgets/create_model.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_theme.dart';
 import '../../../../core/utils/jitsi_video_meeting/video_meeting_service.dart';
 import '../../data/calls_list_response.dart';
 import '../../domain/repositories/appointment_repository.dart';
-import '../../domain/repositories/call_reception_repo.dart';
-import '../pages/home_app.dart';
 import 'call_action_button.dart';
+import 'cancel_call_popUp.dart';
 
 class CallListCard extends StatelessWidget {
   final Call call;
@@ -30,70 +27,21 @@ class CallListCard extends StatelessWidget {
 
   Widget _buildCallCard(context) {
     return Container(
-      width: 50,
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-          color: AppColors.primarySwatch[100],
-          borderRadius: BorderRadius.circular(10)),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Date and time
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  const Icon(Icons.date_range, color: AppColors.primaryColor),
-                  const SizedBox(width: 8),
-                  Text(
-                    "${"date".tr()} : ",
-                    style: AppTheme.headline3
-                        .copyWith(color: AppColors.primaryColor),
-                  ),
-                  Text(call.creationTime!.split("T")[0].toString(),
-                      style:
-                      AppTheme.headline3.copyWith(color: AppColors.primaryColor,fontWeight: FontWeight.w700))
-                ],
-              ),
-              Row(
-                children: [
-                  const Icon(
-                    Icons.access_time_outlined,
-                    color: AppColors.primaryColor,
-                  ),
-                  const SizedBox(width: 8),
-                  Text("${"time".tr()} : ",
-                      style: AppTheme.headline3
-                          .copyWith(color: AppColors.primaryColor)),
-                  Text(DateTime.tryParse('${call!.creationTime!}Z')!.toLocal().toString().split('.')[0].toString().split(" ")[1].toString(),
-                      style: AppTheme.headline3.copyWith(
-                          color: AppColors.primaryColor,
-                          fontWeight: FontWeight.w700))
-                ],
-              ),
-            ],
-          ),
-
-          const SizedBox(
-            height: 15,
-          ),
-
-          // Date and time container
-          _getButtons(),
-
-          const SizedBox(
-            height: 10,
-          ),
-
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+        decoration: BoxDecoration(
+            color: AppColors.white, borderRadius: BorderRadius.circular(10)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Date and time
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  " ${"Order Number".tr()}: ${call.orderNumber}",
-                  style: AppTheme.bodyText1,
+                  "${call.orderNumber}",
+                  style: AppTheme.headline3,
                 ),
                 Row(
                   children: [
@@ -111,13 +59,48 @@ class CallListCard extends StatelessWidget {
                       _getStatus(call.callStatus!),
                       style: AppTheme.bodyText1,
                     ),
+                    CancelCallPopUp(callId: call.id)
                   ],
                 ),
               ],
             ),
+            Row(
+              children: [
+                const Icon(Icons.date_range, color: AppColors.primaryColor),
+                const SizedBox(width: 8),
+                Text(
+                  "${"date".tr()} : ",
+                  style: AppTheme.bodyText1
+                      .copyWith(color: AppColors.primaryColor),
+                ),
+                Text(call.creationTime!.split("T")[0].toString(),
+                    style: AppTheme.bodyText1)
+              ],
+            ),
+            Row(
+              children: [
+                const Icon(
+                  Icons.access_time_outlined,
+                  color: AppColors.primaryColor,
+                ),
+                const SizedBox(width: 8),
+                Text("${"time".tr()} : ",
+                    style: AppTheme.bodyText1
+                        .copyWith(color: AppColors.primaryColor)),
+                Text(
+                    DateTime.tryParse('${call!.creationTime!}Z')!
+                        .toLocal()
+                        .toString()
+                        .split('.')[0]
+                        .toString()
+                        .split(" ")[1]
+                        .toString(),
+                    style: AppTheme.bodyText1)
+              ],
+            ),
+            _getButtons(),
           ],
-      )
-    );
+        ));
   }
 
   String getDate(DateTime date) {
@@ -131,8 +114,7 @@ class CallListCard extends StatelessWidget {
       return Colors.green;
     } else if (status == "Canceled".tr()) {
       return Colors.redAccent;
-    }
-    else if (status == "Active".tr()) {
+    } else if (status == "Active".tr()) {
       return Colors.green;
     }
   }
@@ -144,14 +126,13 @@ class CallListCard extends StatelessWidget {
       return "Treated".tr();
     } else if (status == 3) {
       return "Canceled".tr();
-    }
-    else if (status == 4) {
+    } else if (status == 4) {
       return "Active".tr();
     }
     return "Active".tr();
   }
 
-  CreateModelCubit? CancleCallRequestCubit;
+  /* CreateModelCubit? CancleCallRequestCubit;
 
   _buildCancelButton() {
     return CreateModel<EmptyModel>(
@@ -162,36 +143,36 @@ class CallListCard extends StatelessWidget {
         },
         child: CallActionsButton(
             buttonText: "cancel".tr(),
-            buttonColor: AppColors.lightBlueColor,
+            buttonColor: Colors.red[400],
             textColor: AppColors.white,
             onTap: () {
-              CancleCallRequestCubit!.createModel(call!.id!).then((value)  {HomeApp.updateWaitingCallList();});
-
-
+              CancleCallRequestCubit!.createModel(call!.id!).then((value) {
+                HomeApp.updateWaitingCallList();
+              });
             }));
-  }
+  }*/
 
   Widget _getButtons() {
-    return  Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            CallActionsButton(
-              onTap: () async{
-                if (active) {
-                  await CallsRepository.joinCall(id: call.id!);
-                  VideoMeetingService.startMeeting(
-                    roomText: call.room!,
-                    serverUrl: call.link!,
-                    meetingId: call.id!,
-                  );
-                }
-              },
-              buttonColor: AppColors.primaryColor,
-              buttonText: 'join_call'.tr(),
-              textColor: Colors.white,
-            ),
-            _buildCancelButton(),
-          ],
-        );
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        CallActionsButton(
+          onTap: () async {
+            if (active) {
+              await CallsRepository.joinCall(id: call.id!);
+              VideoMeetingService.startMeeting(
+                roomText: call.room!,
+                serverUrl: call.link!,
+                meetingId: call.id!,
+              );
+            }
+          },
+          buttonColor: Colors.green[500],
+          buttonText: 'join_call'.tr(),
+          textColor: Colors.white,
+        ),
+        // _buildCancelButton(),
+      ],
+    );
   }
 }

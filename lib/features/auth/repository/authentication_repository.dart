@@ -26,6 +26,7 @@ class AuthenticationRepository {
   }
 
   static Future<void> afterLogin(LoginResponseModel loginResponse) async {
+    await Messaging.initFCM();
     AppSharedPreferences.accessToken = loginResponse.accessToken!;
     if (kDebugMode) {
       print(Messaging.token);
