@@ -28,7 +28,7 @@ class CallListCard extends StatelessWidget {
   Widget _buildCallCard(context) {
     return Container(
         margin: const EdgeInsets.symmetric(vertical: 10),
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         decoration: BoxDecoration(
             color: AppColors.white, borderRadius: BorderRadius.circular(10)),
         child: Column(
@@ -43,25 +43,7 @@ class CallListCard extends StatelessWidget {
                   "${call.orderNumber}",
                   style: AppTheme.headline3,
                 ),
-                Row(
-                  children: [
-                    Container(
-                      height: 8,
-                      width: 8,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: _getStatusColor(_getStatus(call.callStatus!))),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      _getStatus(call.callStatus!),
-                      style: AppTheme.bodyText1,
-                    ),
-                    CancelCallPopUp(callId: call.id)
-                  ],
-                ),
+                CancelCallPopUp(callId: call.id)
               ],
             ),
             Row(

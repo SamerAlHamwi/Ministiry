@@ -8,13 +8,14 @@ import '../../../../core/api/http/http_method.dart';
 
 class CallsRepository {
   static Future<BaseResultModel> getCalls(
-      {required dynamic requestData,}) async {
+      {required dynamic requestData,bool IsOldCalls=false}) async {
     return await RemoteDataSource.request<CallsListResponse>(
       converter: (json) => CallsListResponse.fromJson(json),
       method: HttpMethod.get,
       withAuthentication: true,
       queryParameters: requestData.toJson(),
-      url: ApiURLs.getAllCalls,
+      url: IsOldCalls?ApiURLs.getAllCalls+"?IsOldCalls=true"
+          :ApiURLs.getAllCalls,
     );
   }
 

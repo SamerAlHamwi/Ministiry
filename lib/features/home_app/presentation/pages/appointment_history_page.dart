@@ -36,9 +36,6 @@ class AppointmentsHistoryPage extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       width: double.infinity,
       height: double.infinity,
-      decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage(AppAssets.background), fit: BoxFit.fill)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -47,11 +44,12 @@ class AppointmentsHistoryPage extends StatelessWidget {
             child: PaginationList<Call>(
               repositoryCallBack: (data) => CallsRepository.getCalls(
                 requestData: data,
+                  IsOldCalls:true
               ),
               listBuilder: (List<Call> list) {
-                List<Call> oldCalls =
-                    list.where((call) => call.callStatus == 2).toList();
-                return _getUpcomingAppointments(oldCalls);
+              //  List<Call> oldCalls =
+                //    list.where((call) => call.callStatus == 2).toList();
+                return _getUpcomingAppointments(list);
               },
             ),
           ),
