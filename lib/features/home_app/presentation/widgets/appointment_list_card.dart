@@ -34,7 +34,7 @@ class CallListCard extends StatelessWidget {
         decoration: BoxDecoration(
             color: AppColors.white, borderRadius: BorderRadius.circular(10)),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Date and time
@@ -68,49 +68,58 @@ class CallListCard extends StatelessWidget {
                 ],
               ),
             ]),
-            Row(
-              children: [
-                CustomImage.rectangle(
-                  image: AppAssets.dateIcon,
-                  isNetworkImage: false,
-                  svg: false,
-                  height: 15,
-                  width: 15,
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(crossAxisAlignment: CrossAxisAlignment .start,
+
+                  children: [
+                Row(
+                children: [
+                  CustomImage.rectangle(
+                    image: AppAssets.dateIcon,
+                    isNetworkImage: false,
+                    svg: false,
+                    height: 15,
+                    width: 15,
+                  ),
+                  //  const Icon(Icons.date_range, color: AppColors.primaryColor),
+                  const SizedBox(width: 8),
+                  Text("${"date".tr()} : ", style: AppTheme.bodyText1),
+                  Text(call.creationTime!.split("T")[0].toString(),
+                      style: AppTheme.bodyText1)
+                ],
+              ),SizedBox(height: 4,),
+                Row(
+                  children: [
+                    CustomImage.rectangle(
+                      image: AppAssets.timeIcon,
+                      isNetworkImage: false,
+                      svg: false,
+                      height: 15,
+                      width: 15,
+                    ),
+                    // const Icon(
+                    //   Icons.access_time_outlined,
+                    //   color: AppColors.primaryColor,
+                    // ),
+                    const SizedBox(width: 8),
+                    Text("${"time".tr()} : ", style: AppTheme.bodyText1),
+                    Text(
+                        DateTime.tryParse('${call!.creationTime!}Z')!
+                            .toLocal()
+                            .toString()
+                            .split('.')[0]
+                            .toString()
+                            .split(" ")[1]
+                            .toString(),
+                        style: AppTheme.bodyText1)
+                  ],
                 ),
-                //  const Icon(Icons.date_range, color: AppColors.primaryColor),
-                const SizedBox(width: 8),
-                Text("${"date".tr()} : ", style: AppTheme.bodyText1),
-                Text(call.creationTime!.split("T")[0].toString(),
-                    style: AppTheme.bodyText1)
-              ],
-            ),SizedBox(height: 4,),
-            Row(
-              children: [
-                CustomImage.rectangle(
-                  image: AppAssets.timeIcon,
-                  isNetworkImage: false,
-                  svg: false,
-                  height: 15,
-                  width: 15,
-                ),
-                // const Icon(
-                //   Icons.access_time_outlined,
-                //   color: AppColors.primaryColor,
-                // ),
-                const SizedBox(width: 8),
-                Text("${"time".tr()} : ", style: AppTheme.bodyText1),
-                Text(
-                    DateTime.tryParse('${call!.creationTime!}Z')!
-                        .toLocal()
-                        .toString()
-                        .split('.')[0]
-                        .toString()
-                        .split(" ")[1]
-                        .toString(),
-                    style: AppTheme.bodyText1)
-              ],
-            ),
-            _getButtons(),
+              ]),
+              _getButtons(),
+
+            ],
+          )
           ],
         ));
   }
