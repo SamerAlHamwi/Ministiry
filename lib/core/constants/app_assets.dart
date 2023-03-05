@@ -10,5 +10,7 @@ class AppAssets {
   static const String searchHeart = '${baseAssetsURI}search_heart.png';
   static const calenderIcon = "${baseAssetsURI}calender_homepage.png";
   static const clockHomePage = "${baseAssetsURI}clock_homepage.png";
+  static const dateIcon = "${baseAssetsURI}date.png";
+  static const timeIcon = "${baseAssetsURI}time.png";
 
 }
