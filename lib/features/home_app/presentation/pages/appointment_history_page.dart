@@ -26,7 +26,11 @@ class AppointmentsHistoryPage extends StatelessWidget {
             AppAssets.disableBackground,
             fit: BoxFit.fill,
             filterQuality: FilterQuality.low,
-          ),
+          ), Image.asset(
+      AppAssets.background,
+      fit: BoxFit.fill,
+      filterQuality: FilterQuality.low,
+    ),
           _getBodyWidget(context)
         ]));
   }
@@ -42,11 +46,11 @@ class AppointmentsHistoryPage extends StatelessWidget {
           Expanded(
             flex: 1,
             child: PaginationList<Call>(
-              repositoryCallBack: (data) =>
-                  CallsRepository.getCalls(requestData: data, isOldCalls: true),
+              repositoryCallBack: (data) => CallsRepository.getCalls(
+                requestData: data,
+                  IsOldCalls:true
+              ),
               listBuilder: (List<Call> list) {
-                //  List<Call> oldCalls =
-                //    list.where((call) => call.callStatus == 2).toList();
                 return _getUpcomingAppointments(list);
               },
             ),

@@ -32,6 +32,7 @@
   "date": "Date",
   "time": "Time",
   "user_name": "User Name",
+  "email_address": "Email Address",
   "password": "Password",
   "login": "Login",
   "start_here": "Start here",
