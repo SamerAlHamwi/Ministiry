@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:ministry_minister_app/core/constants/app_assets.dart';
+import 'package:ministry_minister_app/core/widgets/image_widgets/custom_image.dart';
 
 import '../../../../core/boilerplate/create_model/cubits/create_model_cubit.dart';
 import '../../../../core/constants/app_colors.dart';
@@ -32,55 +34,92 @@ class CallListCard extends StatelessWidget {
         decoration: BoxDecoration(
             color: AppColors.white, borderRadius: BorderRadius.circular(10)),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Date and time
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "${call.orderNumber}",
-                  style: AppTheme.headline3,
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Row(
+                children: [
+                  Container(
+                    height: 8,
+                    width: 8,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: _getStatusColor(_getStatus(call.callStatus!))),
+                  ),
+                  const SizedBox(width: 5),
+                  Text(
+                    "${call.orderNumber}",
+                    style: AppTheme.headline3,
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  /*  const SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      _getStatus(call.callStatus!),
+                      style: AppTheme.bodyText1,
+                    ),*/
+                  CancelCallPopUp(callId: call.id)
+                ],
+              ),
+            ]),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(crossAxisAlignment: CrossAxisAlignment .start,
+
+                  children: [
+                Row(
+                children: [
+                  CustomImage.rectangle(
+                    image: AppAssets.dateIcon,
+                    isNetworkImage: false,
+                    svg: false,
+                    height: 15,
+                    width: 15,
+                  ),
+                  //  const Icon(Icons.date_range, color: AppColors.primaryColor),
+                  const SizedBox(width: 8),
+                  Text("${"date".tr()} : ", style: AppTheme.bodyText1),
+                  Text(call.creationTime!.split("T")[0].toString(),
+                      style: AppTheme.bodyText1)
+                ],
+              ),SizedBox(height: 4,),
+                Row(
+                  children: [
+                    CustomImage.rectangle(
+                      image: AppAssets.timeIcon,
+                      isNetworkImage: false,
+                      svg: false,
+                      height: 15,
+                      width: 15,
+                    ),
+                    // const Icon(
+                    //   Icons.access_time_outlined,
+                    //   color: AppColors.primaryColor,
+                    // ),
+                    const SizedBox(width: 8),
+                    Text("${"time".tr()} : ", style: AppTheme.bodyText1),
+                    Text(
+                        DateTime.tryParse('${call!.creationTime!}Z')!
+                            .toLocal()
+                            .toString()
+                            .split('.')[0]
+                            .toString()
+                            .split(" ")[1]
+                            .toString(),
+                        style: AppTheme.bodyText1)
+                  ],
                 ),
-                CancelCallPopUp(callId: call.id)
-              ],
-            ),
-            Row(
-              children: [
-                const Icon(Icons.date_range, color: AppColors.primaryColor),
-                const SizedBox(width: 8),
-                Text(
-                  "${"date".tr()} : ",
-                  style: AppTheme.bodyText1
-                      .copyWith(color: AppColors.primaryColor),
-                ),
-                Text(call.creationTime!.split("T")[0].toString(),
-                    style: AppTheme.bodyText1)
-              ],
-            ),
-            Row(
-              children: [
-                const Icon(
-                  Icons.access_time_outlined,
-                  color: AppColors.primaryColor,
-                ),
-                const SizedBox(width: 8),
-                Text("${"time".tr()} : ",
-                    style: AppTheme.bodyText1
-                        .copyWith(color: AppColors.primaryColor)),
-                Text(
-                    DateTime.tryParse('${call!.creationTime!}Z')!
-                        .toLocal()
-                        .toString()
-                        .split('.')[0]
-                        .toString()
-                        .split(" ")[1]
-                        .toString(),
-                    style: AppTheme.bodyText1)
-              ],
-            ),
-            _getButtons(),
+              ]),
+              _getButtons(),
+
+            ],
+          )
           ],
         ));
   }

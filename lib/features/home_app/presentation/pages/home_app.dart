@@ -94,7 +94,7 @@ class _HomeAppState extends State<HomeApp> {
 
   ListView _getUpcomingAppointments(List<Call> list) {
     return ListView(
-        itemExtent: 200,
+        itemExtent: 150,
         controller: HomeApp._scrollController,
         children: List.generate(
             list.length,
