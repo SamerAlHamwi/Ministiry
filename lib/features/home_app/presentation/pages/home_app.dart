@@ -54,6 +54,11 @@ class _HomeAppState extends State<HomeApp> {
           Image.asset(
             AppAssets.disableBackground,
             fit: BoxFit.fill,
+            filterQuality: FilterQuality.low
+          ),
+          Image.asset(
+            AppAssets.background,
+            fit: BoxFit.fill,
             filterQuality: FilterQuality.low,
           ),
           _getBodyWidget(context)

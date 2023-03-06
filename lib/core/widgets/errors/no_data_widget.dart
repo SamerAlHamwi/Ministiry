@@ -16,7 +16,7 @@ class NoDataWidget extends StatelessWidget {
       subtitle: '',
       icon: Image.asset(
         AppAssets.searchHeart,
-        height: 25.0.h,
+        height: 12.0.h,
         // color: AppColors.primary,
       ),
     );

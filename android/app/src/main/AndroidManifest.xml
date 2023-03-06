@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.itland.ministries_system">
    <application
-        android:label="ministry_minister_app"
+        android:label="Let's connect"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
        tools:replace="android:label">

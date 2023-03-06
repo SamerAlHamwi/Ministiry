@@ -29,7 +29,7 @@ class _BaseErrorWidgetState extends State<BaseErrorWidget> {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        width: 100.0.w,
+        width: 80.0.w,
         child: InkWell(
           highlightColor: AppColors.secondaryColor.shade50,
           onTap: widget.onTap,
@@ -44,7 +44,7 @@ class _BaseErrorWidgetState extends State<BaseErrorWidget> {
               Text(
                 widget.title ?? '',
                 style: const TextStyle(
-                  fontSize: 20,
+                  fontSize: 12,
                   color: AppColors.primaryColor,
                 ),
                 textAlign: TextAlign.center,
