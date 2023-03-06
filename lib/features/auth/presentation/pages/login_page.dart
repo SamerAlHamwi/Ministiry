@@ -82,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                                   delay: 2,
                                   child: CustomTextField(
                                     controller: userName,
-                                    hintText: 'user_name'.tr(),
+                                    hintText: 'email_address'.tr(),
                                     validator: (value) {
                                       Validator.nameValidate(value!, context);
                                     },
