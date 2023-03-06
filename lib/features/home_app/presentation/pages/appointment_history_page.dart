@@ -42,12 +42,10 @@ class AppointmentsHistoryPage extends StatelessWidget {
           Expanded(
             flex: 1,
             child: PaginationList<Call>(
-              repositoryCallBack: (data) => CallsRepository.getCalls(
-                requestData: data,
-                  IsOldCalls:true
-              ),
+              repositoryCallBack: (data) =>
+                  CallsRepository.getCalls(requestData: data, isOldCalls: true),
               listBuilder: (List<Call> list) {
-              //  List<Call> oldCalls =
+                //  List<Call> oldCalls =
                 //    list.where((call) => call.callStatus == 2).toList();
                 return _getUpcomingAppointments(list);
               },

@@ -8,19 +8,19 @@ import '../../../../core/api/http/http_method.dart';
 
 class CallsRepository {
   static Future<BaseResultModel> getCalls(
-      {required dynamic requestData,bool IsOldCalls=false}) async {
+      {required dynamic requestData, bool isOldCalls = false}) async {
     return await RemoteDataSource.request<CallsListResponse>(
       converter: (json) => CallsListResponse.fromJson(json),
       method: HttpMethod.get,
       withAuthentication: true,
       queryParameters: requestData.toJson(),
-      url: IsOldCalls?ApiURLs.getAllCalls+"?IsOldCalls=true"
-          :ApiURLs.getAllCalls,
+      url: isOldCalls
+          ? "${ApiURLs.getAllCalls}?IsOldCalls=true"
+          : ApiURLs.getAllCalls,
     );
   }
 
-  static Future<BaseResultModel> joinCall(
-      {required int id}) async {
+  static Future<BaseResultModel> joinCall({required int id}) async {
     return await RemoteDataSource.request<EmptyModel>(
       converter: (json) => EmptyModel.fromJson(json),
       method: HttpMethod.post,
@@ -30,8 +30,7 @@ class CallsRepository {
     );
   }
 
-  static Future<BaseResultModel> leaveCall(
-      {required int id}) async {
+  static Future<BaseResultModel> leaveCall({required int id}) async {
     return await RemoteDataSource.request<EmptyModel>(
       converter: (json) => EmptyModel.fromJson(json),
       method: HttpMethod.post,
@@ -40,6 +39,4 @@ class CallsRepository {
       url: ApiURLs.leaveCall,
     );
   }
-
-
 }
