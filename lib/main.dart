@@ -32,11 +32,13 @@ void main() async {
   if (Platform.isAndroid || Platform.isIOS) await Firebase.initializeApp();
   await LocalNotificationService().init();
   await Messaging.initFCM();
-  await SignalR().start(onReceived: (data) {
-    var notification =
-        FCMNotificationModel.fromSignalR(data as Map<String, dynamic>);
-    NotificationMiddleware.onRceived(notification);
-  });
+  if (AppSharedPreferences.hasAccessToken) {
+    await SignalR().start(onReceived: (data) {
+      var notification =
+          FCMNotificationModel.fromSignalR(data as Map<String, dynamic>);
+      NotificationMiddleware.onRceived(notification);
+    });
+  }
 
   ServiceLocator.registerModels();
 
