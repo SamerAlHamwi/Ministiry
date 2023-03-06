@@ -68,6 +68,7 @@ class CallListCard extends StatelessWidget {
                 ],
               ),
             ]),
+          SizedBox(height: 8),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(crossAxisAlignment: CrossAxisAlignment .start,
@@ -116,10 +117,11 @@ class CallListCard extends StatelessWidget {
                   ],
                 ),
               ]),
-              _getButtons(),
-
+              // CustomImage.rectangle(image: AppAssets.callIcon,isNetworkImage: false,svg: false,height: 30,width: 30)
             ],
-          )
+          ),            _getButtons()
+
+
           ],
         ));
   }
@@ -136,7 +138,7 @@ class CallListCard extends StatelessWidget {
     } else if (status == "Canceled".tr()) {
       return Colors.redAccent;
     } else if (status == "Active".tr()) {
-      return Colors.green;
+      return Colors.deepOrange;
     }
   }
 

@@ -12,5 +12,6 @@ class AppAssets {
   static const clockHomePage = "${baseAssetsURI}clock_homepage.png";
   static const dateIcon = "${baseAssetsURI}date.png";
   static const timeIcon = "${baseAssetsURI}time.png";
+  static const callIcon = "${baseAssetsURI}video_call.png";
 
 }
