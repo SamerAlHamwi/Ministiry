@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:ministry_minister_app/core/api/errors/base_error.dart';
+import 'package:ministry_minister_app/core/utils/Navigation/Navigation.dart';
+import 'package:ministry_minister_app/features/auth/presentation/pages/login_page.dart';
 
 import '../../../core/Notification/data/fcm_notification_model.dart';
 import '../../../core/Notification/domin/notification_middleware.dart';
@@ -26,7 +28,9 @@ class AuthenticationRepository {
       withAuthentication: false,
       url: ApiURLs.loginUrl,
     );
-    afterLogin(res);
+    if (res is LoginResponseModel) {
+      afterLogin(res);
+    }
     return res;
   }
 
@@ -57,6 +61,7 @@ class AuthenticationRepository {
         message: 'Unable to change language please re-login',
       );
       AppSharedPreferences.clearForLogOut();
+      Navigation.pushAndRemoveUntil(const LoginPage());
     }
     if (Messaging.token == null) {
       Print.showSnackBar(
@@ -67,6 +72,7 @@ class AuthenticationRepository {
         Print.showErrorSnackBar(
             message: 'Error occurred while sending fcm token');
         AppSharedPreferences.clearForLogOut();
+        Navigation.pushAndRemoveUntil(const LoginPage());
         return;
       }
     }
