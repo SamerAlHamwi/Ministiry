@@ -17,12 +17,14 @@ import 'core/constants/app_constants.dart';
 import 'core/constants/app_settings.dart';
 import 'core/constants/app_theme.dart';
 import 'core/constants/constants.dart';
+import 'core/notification/data/fcm_notification_model.dart';
+import 'core/notification/domin/notification_middleware.dart';
 import 'core/notification/local_notifications_service.dart';
+import 'core/notification/signal_r.dart';
 import 'core/utils/service_locator/service_locator.dart';
 import 'core/utils/shared_preferences/SharedPreferencesHelper.dart';
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   DartPluginRegistrant.ensureInitialized();
   await AppSharedPreferences.init();
@@ -30,6 +32,11 @@ void main() async {
   if (Platform.isAndroid || Platform.isIOS) await Firebase.initializeApp();
   await LocalNotificationService().init();
   await Messaging.initFCM();
+  await SignalR().start(onReceived: (data) {
+    var notification =
+        FCMNotificationModel.fromSignalR(data as Map<String, dynamic>);
+    NotificationMiddleware.onRceived(notification);
+  });
 
   ServiceLocator.registerModels();
 
@@ -68,7 +75,7 @@ class MyApp extends StatelessWidget {
           locale: context.locale,
           title: AppSettings.appName,
           home: AppSharedPreferences.hasAccessToken
-              ?  HomeApp()
+              ? HomeApp()
               : const LoginPage(),
           material: (_, __) => MaterialAppData(
             scrollBehavior: AppScrollBehavior(),

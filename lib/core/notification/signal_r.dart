@@ -8,7 +8,7 @@ import '../constants/app_settings.dart';
 import '../utils/shared_preferences/SharedPreferencesHelper.dart';
 
 class SignalR {
-  final serverUrl = "${AppSettings.baseUrl}/signalr";
+  final serverUrl = "${AppSettings.baseUrl1}/signalr";
   HubConnection? hubConnection;
   int tryNumber = 10;
 

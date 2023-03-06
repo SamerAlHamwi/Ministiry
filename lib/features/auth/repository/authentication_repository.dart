@@ -1,5 +1,8 @@
 import 'package:flutter/foundation.dart';
 
+import '../../../core/Notification/data/fcm_notification_model.dart';
+import '../../../core/Notification/domin/notification_middleware.dart';
+import '../../../core/Notification/signal_r.dart';
 import '../../../core/api/core_models/base_result_model.dart';
 import '../../../core/api/data_source/remote_data_source.dart';
 import '../../../core/api/http/api_urls.dart';
@@ -32,6 +35,11 @@ class AuthenticationRepository {
       print(Messaging.token);
     }
     bool res = await NotificationCubit.updateFCMToken(Messaging.token);
+    await SignalR().start(onReceived: (data) {
+      var notification =
+          FCMNotificationModel.fromSignalR(data as Map<String, dynamic>);
+      NotificationMiddleware.onRceived(notification);
+    });
     if (Messaging.token == null) {
       Print.showSnackBar(
         message: 'Your device is not supported by Google services',

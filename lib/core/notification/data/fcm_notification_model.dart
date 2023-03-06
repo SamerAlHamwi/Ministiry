@@ -25,7 +25,8 @@ class FCMNotificationModel {
     if (json['notificationName'] != null) {
       notificationName = json['notificationName'];
     }
-    if (json['type'] != null) type = NotificationType.values[int.tryParse(json['type'])!];
+    if (json['type'] != null)
+      type = NotificationType.values[int.tryParse(json['type'])!];
     if (json['message'] != null) {
       message = json['message'];
     }
@@ -49,5 +50,11 @@ class FCMNotificationModel {
     }
   }
 
-  FCMNotificationModel.fromSignalR(Map<String, dynamic> json) {}
+  FCMNotificationModel.fromSignalR(Map<String, dynamic> json) {
+    type = NotificationType.values.firstWhere((element) => element
+        .toString()
+        .toLowerCase()
+        .contains(
+            json['notification']['notificationName'].toString().toLowerCase()));
+  }
 }

@@ -4,6 +4,7 @@ class AppSettings {
 
   static const appName = 'Ministries Management App';
   static const baseUrl = 'https://ministrieapidev.metasignapp.com/api/';
+  static const baseUrl1 = 'https://ministrieapidev.metasignapp.com';
   static const appVersion = 'V1.0.0';
   static const appVersionCode = '1';
   static bool isDebug = false;
