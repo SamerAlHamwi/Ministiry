@@ -117,10 +117,11 @@ class CallListCard extends StatelessWidget {
                   ],
                 ),
               ]),
-              _getButtons(),
-
+              // CustomImage.rectangle(image: AppAssets.callIcon,isNetworkImage: false,svg: false,height: 30,width: 30)
             ],
-          )
+          ),            _getButtons()
+
+
           ],
         ));
   }
