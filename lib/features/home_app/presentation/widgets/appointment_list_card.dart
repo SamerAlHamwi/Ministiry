@@ -68,6 +68,7 @@ class CallListCard extends StatelessWidget {
                 ],
               ),
             ]),
+          SizedBox(height: 8),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(crossAxisAlignment: CrossAxisAlignment .start,
