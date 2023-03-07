@@ -66,6 +66,7 @@ class AppointmentsHistoryPage extends StatelessWidget {
             (index) => CallListCard(
                   key: GlobalKey(),
                   call: list[index],
+                active:false
                 )));
   }
 }
