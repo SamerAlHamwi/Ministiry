@@ -40,15 +40,15 @@ class _DialogExitAppState extends State<DialogExitApp> {
               Container(
                 width: MediaQuery.of(context).size.width /4,
                  height: 50,
-                padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.all(8),
+                decoration: const BoxDecoration(
                     color: AppColors.lightBlueColor,
                     borderRadius: BorderRadius.all(Radius.circular(20.0))),
                 child: TextButton(
+                  onPressed: widget.onPressedYes,
                   child: Text('yes'.tr(),
                       style:
                           AppTheme.bodyText2.copyWith(color: AppColors.white)),
-                  onPressed: widget.onPressedYes,
                 ),
               ),
               SizedBox(width: 8),
