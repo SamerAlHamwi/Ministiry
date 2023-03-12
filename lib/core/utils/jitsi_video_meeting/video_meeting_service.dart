@@ -1,5 +1,6 @@
 
 import '../../../features/home_app/domain/repositories/appointment_repository.dart';
+import '../../../features/home_app/presentation/pages/home_app.dart';
 import '../../constants/constants.dart';
 import '../../notification/data/fcm_notification_model.dart';
 import 'package:quiver/async.dart';
@@ -35,6 +36,7 @@ class VideoMeetingService {
         serverUrl: serverUrl,
         onLeave: () async {
           await CallsRepository.leaveCall(id: meetingId);
+          HomeApp.updateWaitingCallList();
           await Future.delayed(const Duration(seconds: 5));
           AppSharedPreferences.isInCall = false;
           try {
@@ -43,6 +45,8 @@ class VideoMeetingService {
             VideoMeetingService.meetingId = null;
             VideoMeetingService.timer?.cancel();
           } catch (e) {}
+
+
         },
         subjectText: '');
 
