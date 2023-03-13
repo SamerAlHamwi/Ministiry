@@ -9,6 +9,7 @@ import '../../../../core/constants/app_theme.dart';
 import '../../../../core/utils/jitsi_video_meeting/video_meeting_service.dart';
 import '../../data/calls_list_response.dart';
 import '../../domain/repositories/appointment_repository.dart';
+import '../pages/home_app.dart';
 import 'call_action_button.dart';
 import 'cancel_call_popUp.dart';
 
@@ -68,60 +69,61 @@ class CallListCard extends StatelessWidget {
                 ],
               ),
             ]),
-          SizedBox(height: 8),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(crossAxisAlignment: CrossAxisAlignment .start,
-
-                  children: [
-                Row(
-                children: [
-                  CustomImage.rectangle(
-                    image: AppAssets.dateIcon,
-                    isNetworkImage: false,
-                    svg: false,
-                    height: 15,
-                    width: 15,
+            SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Row(
+                    children: [
+                      CustomImage.rectangle(
+                        image: AppAssets.dateIcon,
+                        isNetworkImage: false,
+                        svg: false,
+                        height: 15,
+                        width: 15,
+                      ),
+                      //  const Icon(Icons.date_range, color: AppColors.primaryColor),
+                      const SizedBox(width: 8),
+                      Text("${"date".tr()} : ", style: AppTheme.bodyText1),
+                      Text(call.creationTime!.split("T")[0].toString(),
+                          style: AppTheme.bodyText1)
+                    ],
                   ),
-                  //  const Icon(Icons.date_range, color: AppColors.primaryColor),
-                  const SizedBox(width: 8),
-                  Text("${"date".tr()} : ", style: AppTheme.bodyText1),
-                  Text(call.creationTime!.split("T")[0].toString(),
-                      style: AppTheme.bodyText1)
-                ],
-              ),SizedBox(height: 4,),
-                Row(
-                  children: [
-                    CustomImage.rectangle(
-                      image: AppAssets.timeIcon,
-                      isNetworkImage: false,
-                      svg: false,
-                      height: 15,
-                      width: 15,
-                    ),
-                    // const Icon(
-                    //   Icons.access_time_outlined,
-                    //   color: AppColors.primaryColor,
-                    // ),
-                    const SizedBox(width: 8),
-                    Text("${"time".tr()} : ", style: AppTheme.bodyText1),
-                    Text(
-                        DateTime.tryParse('${call!.creationTime!}Z')!
-                            .toLocal()
-                            .toString()
-                            .split('.')[0]
-                            .toString()
-                            .split(" ")[1]
-                            .toString(),
-                        style: AppTheme.bodyText1)
-                  ],
-                ),
-              ]),
-              // CustomImage.rectangle(image: AppAssets.callIcon,isNetworkImage: false,svg: false,height: 30,width: 30)
-            ],
-          ),            _getButtons()
-
-
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Row(
+                    children: [
+                      CustomImage.rectangle(
+                        image: AppAssets.timeIcon,
+                        isNetworkImage: false,
+                        svg: false,
+                        height: 15,
+                        width: 15,
+                      ),
+                      // const Icon(
+                      //   Icons.access_time_outlined,
+                      //   color: AppColors.primaryColor,
+                      // ),
+                      const SizedBox(width: 8),
+                      Text("${"time".tr()} : ", style: AppTheme.bodyText1),
+                      Text(
+                          DateTime.tryParse('${call!.creationTime!}Z')!
+                              .toLocal()
+                              .toString()
+                              .split('.')[0]
+                              .toString()
+                              .split(" ")[1]
+                              .toString(),
+                          style: AppTheme.bodyText1)
+                    ],
+                  ),
+                ]),
+                // CustomImage.rectangle(image: AppAssets.callIcon,isNetworkImage: false,svg: false,height: 30,width: 30)
+              ],
+            ),
+            _getButtons()
           ],
         ));
   }
@@ -190,7 +192,7 @@ class CallListCard extends StatelessWidget {
               );
             }
           },
-          buttonColor: Colors.green[500],
+          buttonColor: active ? Colors.green[500] : AppColors.grey,
           buttonText: 'join_call'.tr(),
           textColor: Colors.white,
         ),
