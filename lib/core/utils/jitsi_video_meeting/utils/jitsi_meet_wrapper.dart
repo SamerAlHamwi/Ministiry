@@ -37,7 +37,7 @@ class Jitsi {
       FeatureFlag.isChatEnabled: true,
       FeatureFlag.isMeetingPasswordEnabled: false,
       FeatureFlag.isTileViewEnabled: false,
-      FeatureFlag.isToolboxAlwaysVisible: true,
+      // FeatureFlag.isToolboxAlwaysVisible: true,
       FeatureFlag.isCalendarEnabled: true,
       FeatureFlag.isLiveStreamingEnabled: true,
       FeatureFlag.isRecordingEnabled: true,
