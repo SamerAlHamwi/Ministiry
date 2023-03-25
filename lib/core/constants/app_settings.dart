@@ -5,8 +5,8 @@ class AppSettings {
   static const appName = 'Ministries Management App';
   static const baseUrl = 'https://ministrieapidev.metasignapp.com/api/';
   static const baseUrl1 = 'https://ministrieapidev.metasignapp.com';
-  static const appVersion = 'V1.0.7';
-  static const appVersionCode = '7';
+  static const appVersion = 'V1.0.9';
+  static const appVersionCode = '9';
   static bool isDebug = false;
   static String appFont = 'Cairo';
   static const playLink="https://play.google.com/store/apps/details?id=com.example.ministries_management_app";
