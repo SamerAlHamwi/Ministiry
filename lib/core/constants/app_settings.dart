@@ -3,7 +3,8 @@ class AppSettings {
   AppSettings._();
 
   static const appName = 'Ministries Management App';
-  static const baseUrl = 'https://ministrieapidev.metasignapp.com/api/';
+  //static const baseUrl = 'https://ministrieapidev.metasignapp.com/api/';
+  static const baseUrl = 'https://ministrieapidev-dev.dev.itland-sy.com/api/';
   static const baseUrl1 = 'https://ministrieapidev.metasignapp.com';
   static const appVersion = 'V1.0.9';
   static const appVersionCode = '9';

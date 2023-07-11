@@ -70,6 +70,9 @@ dependencies:
   loader_overlay: ^2.1.0
   devicelocale: ^0.5.5
   flutter_launcher_icons: ^0.12.0
+  assets_audio_player: ^3.0.6
+  vibration: ^1.7.5
+
 
 
 dev_dependencies:
@@ -103,6 +106,8 @@ flutter:
     - assets/fonts/
     - assets/images/
     - assets/locales/
+    - assets/audio/
+
 
   fonts:
     - family: CustomIcons

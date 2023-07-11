@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.itland.ministries_system">
-   <application
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <application
         android:label="Let's connect"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"

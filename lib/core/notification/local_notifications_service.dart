@@ -7,7 +7,7 @@ class LocalNotificationService {
 
   //Singleton pattern
   static final LocalNotificationService _notificationService =
-      LocalNotificationService._internal();
+  LocalNotificationService._internal();
 
   factory LocalNotificationService() {
     return _notificationService;
@@ -17,13 +17,13 @@ class LocalNotificationService {
 
   //instance of FlutterLocalNotificationsPlugin
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
+  FlutterLocalNotificationsPlugin();
 
   Future<void> init(
       {void Function(String? payload)? onSelectNotification}) async {
     //Initialization Settings for Android
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('ic_launcher');
+    AndroidInitializationSettings('ic_launcher');
 
     //Initialization Settings for iOS
     // const IOSInitializationSettings initializationSettingsIOS =
@@ -34,7 +34,7 @@ class LocalNotificationService {
     // );
 
     const InitializationSettings initializationSettings =
-        InitializationSettings(
+    InitializationSettings(
       android: initializationSettingsAndroid,
       // iOS: initializationSettingsIOS
     );
@@ -61,7 +61,7 @@ class LocalNotificationService {
   }) async {
     if (showProgress && Platform.isIOS) return;
     AndroidNotificationDetails androidNotificationDetails =
-        AndroidNotificationDetails(
+    AndroidNotificationDetails(
       'channel ID',
       'channel name',
       enableVibration: enableVibration,
