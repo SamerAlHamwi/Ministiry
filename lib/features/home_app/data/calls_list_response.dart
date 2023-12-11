@@ -28,6 +28,7 @@ class CallsListResponse extends ListResultModel<Call> {
 
 class Call {
   int? id;
+  String? callRequesterName;
   String? creationTime;
   String? orderNumber;
   String? screenJoinedDate;
@@ -45,6 +46,7 @@ class Call {
       this.creationTime,
       this.screenLeaveDate,
       this.numberOfCallMinutes,
+      this.callRequesterName,
       this.callStatus,
       this.link,
       this.room,
@@ -58,6 +60,7 @@ class Call {
     screenLeaveDate = json['screenLeaveDate'];
     numberOfCallMinutes = json['numberOfCallMinutes'];
     callStatus = json['callStatus'];
+    callRequesterName = json['callRequesterName'];
     link = json['link'];
     room = json['room'];
     leader = json['leader'] != null ? Leader.fromJson(json['leader']) : null;
@@ -73,6 +76,7 @@ class Call {
     data['screenLeaveDate'] = screenLeaveDate;
     data['numberOfCallMinutes'] = numberOfCallMinutes;
     data['callStatus'] = callStatus;
+    data['callRequesterName'] = callRequesterName;
     data['link'] = link;
     data['room'] = room;
     if (leader != null) {

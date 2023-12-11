@@ -9,7 +9,6 @@ import '../../../../core/constants/app_theme.dart';
 import '../../../../core/utils/jitsi_video_meeting/video_meeting_service.dart';
 import '../../data/calls_list_response.dart';
 import '../../domain/repositories/appointment_repository.dart';
-import '../pages/home_app.dart';
 import 'call_action_button.dart';
 import 'cancel_call_popUp.dart';
 
@@ -69,11 +68,30 @@ class CallListCard extends StatelessWidget {
                 ],
               ),
             ]),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  call!.callRequesterName != null
+                      ? Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 4),
+                          child: Row(
+                            children: [
+                              Text(
+                                "اسم العميل : ",
+                                style: AppTheme.headline3
+                                    .copyWith(color: AppColors.blueColor),
+                              ),
+                              Text(
+                                call!.callRequesterName ?? "",
+                                style: AppTheme.headline3,
+                              ),
+                            ],
+                          ),
+                        )
+                      : Container(),
+                  const SizedBox(height: 10),
                   Row(
                     children: [
                       CustomImage.rectangle(
@@ -90,7 +108,7 @@ class CallListCard extends StatelessWidget {
                           style: AppTheme.bodyText1)
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 4,
                   ),
                   Row(
