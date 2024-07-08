@@ -36,8 +36,7 @@ class AppTheme {
     primarySwatch: Colors.green,
     outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-      primary: AppColors.primaryColor,
-      shape: const RoundedRectangleBorder(
+      foregroundColor: AppColors.primaryColor, shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(5),
         ),

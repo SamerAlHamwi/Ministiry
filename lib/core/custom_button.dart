@@ -15,18 +15,18 @@ class CustomButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+            backgroundColor: color,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
         child: Text(
           text,
           style: Theme.of(context).textTheme.button!.copyWith(
               color: textColor ?? Colors.white, fontWeight: FontWeight.bold),
         ),
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-            primary: color,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            textStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
       ),
     );
   }
