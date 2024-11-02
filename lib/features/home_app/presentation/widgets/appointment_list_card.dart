@@ -2,11 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:ministry_minister_app/core/constants/app_assets.dart';
 import 'package:ministry_minister_app/core/widgets/image_widgets/custom_image.dart';
-
 import '../../../../core/boilerplate/create_model/cubits/create_model_cubit.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_theme.dart';
-import '../../../../core/utils/jitsi_video_meeting/video_meeting_service.dart';
+import '../../../../core/utils/video_meeting/video_meeting_service.dart';
 import '../../data/calls_list_response.dart';
 import '../../domain/repositories/appointment_repository.dart';
 import 'call_action_button.dart';
@@ -57,13 +56,6 @@ class CallListCard extends StatelessWidget {
               ),
               Row(
                 children: [
-                  /*  const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      _getStatus(call.callStatus!),
-                      style: AppTheme.bodyText1,
-                    ),*/
                   CancelCallPopUp(callId: call.id)
                 ],
               ),
@@ -101,7 +93,6 @@ class CallListCard extends StatelessWidget {
                         height: 15,
                         width: 15,
                       ),
-                      //  const Icon(Icons.date_range, color: AppColors.primaryColor),
                       const SizedBox(width: 8),
                       Text("${"date".tr()} : ", style: AppTheme.bodyText1),
                       Text(call.creationTime!.split("T")[0].toString(),
@@ -120,10 +111,6 @@ class CallListCard extends StatelessWidget {
                         height: 15,
                         width: 15,
                       ),
-                      // const Icon(
-                      //   Icons.access_time_outlined,
-                      //   color: AppColors.primaryColor,
-                      // ),
                       const SizedBox(width: 8),
                       Text("${"time".tr()} : ", style: AppTheme.bodyText1),
                       Text(
@@ -138,7 +125,6 @@ class CallListCard extends StatelessWidget {
                     ],
                   ),
                 ]),
-                // CustomImage.rectangle(image: AppAssets.callIcon,isNetworkImage: false,svg: false,height: 30,width: 30)
               ],
             ),
             _getButtons()
@@ -175,25 +161,6 @@ class CallListCard extends StatelessWidget {
     return "Active".tr();
   }
 
-  /* CreateModelCubit? CancleCallRequestCubit;
-
-  _buildCancelButton() {
-    return CreateModel<EmptyModel>(
-        onSuccess: (EmptyModel model) {},
-        repositoryCallBack: (data) => CallReceptionRepo.CancleCallRequest(data),
-        onCubitCreated: (CreateModelCubit cubit) {
-          CancleCallRequestCubit = cubit;
-        },
-        child: CallActionsButton(
-            buttonText: "cancel".tr(),
-            buttonColor: Colors.red[400],
-            textColor: AppColors.white,
-            onTap: () {
-              CancleCallRequestCubit!.createModel(call!.id!).then((value) {
-                HomeApp.updateWaitingCallList();
-              });
-            }));
-  }*/
 
   Widget _getButtons() {
     return Row(
@@ -202,12 +169,11 @@ class CallListCard extends StatelessWidget {
         CallActionsButton(
           onTap: () async {
             if (active) {
-              await CallsRepository.joinCall(id: call.id!);
-              VideoMeetingService.startMeeting(
-                roomText: call.room!,
-                serverUrl: call.link!,
-                meetingId: call.id!,
-              );
+              await CallsRepository.joinCall(id: call.id!).then((value){
+                VideoMeetingService.startMeeting(
+                  call: call,
+                );
+              });
             }
           },
           buttonColor: active ? Colors.green[500] : AppColors.grey,

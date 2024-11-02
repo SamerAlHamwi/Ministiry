@@ -21,8 +21,8 @@ class CallsRepository {
   }
 
   static Future<BaseResultModel> joinCall({required int id}) async {
-    return await RemoteDataSource.request<EmptyModel>(
-      converter: (json) => EmptyModel.fromJson(json),
+    return await RemoteDataSource.request<Call>(
+      converter: (json) => Call.fromJson(json),
       method: HttpMethod.post,
       withAuthentication: true,
       data: {"id": id},

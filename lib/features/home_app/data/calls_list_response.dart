@@ -26,7 +26,7 @@ class CallsListResponse extends ListResultModel<Call> {
   }
 }
 
-class Call {
+class Call extends BaseResultModel{
   int? id;
   String? callRequesterName;
   String? creationTime;
@@ -35,8 +35,10 @@ class Call {
   String? screenLeaveDate;
   int? numberOfCallMinutes;
   int? callStatus;
-  String? link;
-  String? room;
+  String? channelName;
+  String? agoraRtcToken;
+  int? userId;
+  int? interpreterId;
   Leader? leader;
   Leader? screen;
 
@@ -48,8 +50,10 @@ class Call {
       this.numberOfCallMinutes,
       this.callRequesterName,
       this.callStatus,
-      this.link,
-      this.room,
+      this.channelName,
+      this.agoraRtcToken,
+      this.userId,
+      this.interpreterId,
       this.leader,
       this.screen});
 
@@ -61,8 +65,10 @@ class Call {
     numberOfCallMinutes = json['numberOfCallMinutes'];
     callStatus = json['callStatus'];
     callRequesterName = json['callRequesterName'];
-    link = json['link'];
-    room = json['room'];
+    channelName = json['channelName'] ?? '';
+    agoraRtcToken = json['agoraRtcToken'] ?? '';
+    userId = json['userId'] ?? 0;
+    interpreterId = json['interpreterId'] ?? 0;
     leader = json['leader'] != null ? Leader.fromJson(json['leader']) : null;
     screen = json['screen'] != null ? Leader.fromJson(json['screen']) : null;
     orderNumber = json['orderNumber'];
@@ -77,8 +83,6 @@ class Call {
     data['numberOfCallMinutes'] = numberOfCallMinutes;
     data['callStatus'] = callStatus;
     data['callRequesterName'] = callRequesterName;
-    data['link'] = link;
-    data['room'] = room;
     if (leader != null) {
       data['leader'] = leader!.toJson();
     }

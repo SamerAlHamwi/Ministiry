@@ -17,6 +17,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.16"
+  agora_rtc_engine:
+    dependency: "direct main"
+    description:
+      name: agora_rtc_engine
+      sha256: deefb5ea051c4d916552cbf76cfbdd652867aa9b554ff9afb3c732ec2e44652e
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.3.2"
   analyzer:
     dependency: transitive
     description:
@@ -773,24 +781,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.17.0"
-  jitsi_meet_wrapper:
-    dependency: "direct main"
-    description:
-      path: jitsi_meet_wrapper
-      ref: main
-      resolved-ref: "460b4e41e5e90153f41b04fc88c2691c35980f10"
-      url: "https://github.com/mosab-omari/jitsi_meet_wrapper"
-    source: git
-    version: "0.0.6"
-  jitsi_meet_wrapper_platform_interface:
+  iris_method_channel:
     dependency: transitive
     description:
-      path: jitsi_meet_wrapper_platform_interface
-      ref: main
-      resolved-ref: "460b4e41e5e90153f41b04fc88c2691c35980f10"
-      url: "https://github.com/mosab-omari/jitsi_meet_wrapper"
-    source: git
-    version: "0.0.4"
+      name: iris_method_channel
+      sha256: "131d0a40ba646ba8fd4bf76e24d4ebd4aa3174ee39aa5fe8240c3b827979052c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.1"
   js:
     dependency: transitive
     description:
