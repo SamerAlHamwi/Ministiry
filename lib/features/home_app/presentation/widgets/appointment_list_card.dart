@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:ministry_minister_app/core/boilerplate/create_model/widgets/create_model.dart';
 import 'package:ministry_minister_app/core/constants/app_assets.dart';
 import 'package:ministry_minister_app/core/widgets/image_widgets/custom_image.dart';
 import '../../../../core/boilerplate/create_model/cubits/create_model_cubit.dart';
@@ -161,24 +162,33 @@ class CallListCard extends StatelessWidget {
     return "Active".tr();
   }
 
+  CreateModelCubit? joinCubit;
+
 
   Widget _getButtons() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        CallActionsButton(
-          onTap: () async {
-            if (active) {
-              await CallsRepository.joinCall(id: call.id!).then((value){
-                VideoMeetingService.startMeeting(
-                  call: call,
-                );
-              });
-            }
+        CreateModel(
+          onSuccess: (Call model) {
+            VideoMeetingService.startMeeting(
+              call: model,
+            );
           },
-          buttonColor: active ? Colors.green[500] : AppColors.grey,
-          buttonText: 'join_call'.tr(),
-          textColor: Colors.white,
+          repositoryCallBack: (data) => CallsRepository.joinCall(id: call.id!),
+          onCubitCreated: (CreateModelCubit cubit) {
+            joinCubit = cubit;
+          },
+          child: CallActionsButton(
+            onTap: () async {
+              if (active) {
+                joinCubit!.createModel({});
+              }
+            },
+            buttonColor: active ? Colors.green[500] : AppColors.grey,
+            buttonText: 'join_call'.tr(),
+            textColor: Colors.white,
+          ),
         ),
         // _buildCancelButton(),
       ],
