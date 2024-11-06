@@ -37,6 +37,7 @@ class Call extends BaseResultModel{
   int? callStatus;
   String? channelName;
   String? agoraRtcToken;
+  String? agoraAppId;
   int? userId;
   int? interpreterId;
   Leader? leader;
@@ -52,6 +53,7 @@ class Call extends BaseResultModel{
       this.callStatus,
       this.channelName,
       this.agoraRtcToken,
+      this.agoraAppId,
       this.userId,
       this.interpreterId,
       this.leader,
@@ -67,6 +69,7 @@ class Call extends BaseResultModel{
     callRequesterName = json['callRequesterName'];
     channelName = json['channelName'] ?? '';
     agoraRtcToken = json['agoraRtcToken'] ?? '';
+    agoraAppId = json['agoraAppId'] ?? '';
     userId = json['userId'] ?? 0;
     interpreterId = json['interpreterId'] ?? 0;
     leader = json['leader'] != null ? Leader.fromJson(json['leader']) : null;
@@ -83,6 +86,7 @@ class Call extends BaseResultModel{
     data['numberOfCallMinutes'] = numberOfCallMinutes;
     data['callStatus'] = callStatus;
     data['callRequesterName'] = callRequesterName;
+    data['agoraAppId'] = agoraAppId;
     if (leader != null) {
       data['leader'] = leader!.toJson();
     }

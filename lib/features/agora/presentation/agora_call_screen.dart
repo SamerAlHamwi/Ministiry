@@ -6,7 +6,6 @@ import 'package:ministry_minister_app/features/home_app/data/calls_list_response
 import 'package:permission_handler/permission_handler.dart';
 import '../../../core/utils/Navigation/Navigation.dart';
 import '../../home_app/presentation/pages/home_app.dart';
-import '../domain/agora_manager.dart';
 
 
 class VideoCallScreen extends StatefulWidget {
@@ -43,7 +42,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
 
     _engine = createAgoraRtcEngine();
     await _engine.initialize(RtcEngineContext(
-      appId: AgoraManager.appId,
+      appId: widget.model.agoraAppId,
     ));
 
     await _engine.enableVideo();
