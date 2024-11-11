@@ -14,11 +14,11 @@ class AppSettings {
   // static const String baseUrl1 = 'https://ministrieapidev-dev.dev.itland-sy.com';
 
   ///BASE_URL New
-  static const String baseUrl ="https://ministryapi.metasignapp.com/api/";
-  static const String baseUrl1 = 'https://ministryapi.metasignapp.com';
+  // static const String baseUrl ="https://ministryapi.metasignapp.com/api/";
+  // static const String baseUrl1 = 'https://ministryapi.metasignapp.com';
 
-  // static const String baseUrl ="https://ministry-api.bkp.itlandfz.com/api/";
-  // static const String baseUrl1 = 'https://ministry-api.bkp.itlandfz.com';
+  static const String baseUrl ="https://ministry-api.bkp.itlandfz.com/api/";
+  static const String baseUrl1 = 'https://ministry-api.bkp.itlandfz.com';
 
   static const appVersion = 'V1.0.12';
   static const appVersionCode = '11';

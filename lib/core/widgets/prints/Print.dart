@@ -32,7 +32,7 @@ class Print {
       context: Keys.navigatorKey.currentContext!,
       // dialogType: DialogType.QUESTION,
       headerAnimationLoop: false,
-      animType: AnimType.TOPSLIDE,
+      animType: AnimType.topSlide,
       btnCancelOnPress: btnCancelOnPress,
       btnOkOnPress: btnOkOnPress,
 //          () {

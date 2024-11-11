@@ -12,6 +12,7 @@ class AppTheme {
   static const borderLine = Color(0xffc0c0c0);
   static const double iconSize = 20;
   static ThemeData appTheme = ThemeData(
+    useMaterial3: false,
     iconTheme: const IconThemeData(color: AppColors.black, size: iconSize),
     primaryColor: AppColors.primaryColor,
     fontFamily: AppSettings.appFont,

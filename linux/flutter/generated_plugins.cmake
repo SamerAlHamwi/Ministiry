@@ -4,7 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   devicelocale
-  smart_auth
+  rive_common
   url_launcher_linux
 )
 

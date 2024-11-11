@@ -8,7 +8,8 @@ list(APPEND FLUTTER_PLUGIN_LIST
   geolocator_windows
   iris_method_channel
   permission_handler_windows
-  smart_auth
+  rive_common
+  share_plus
   url_launcher_windows
 )
 

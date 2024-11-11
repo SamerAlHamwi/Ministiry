@@ -1,7 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:ministry_minister_app/core/api/errors/base_error.dart';
 import 'package:ministry_minister_app/core/utils/Navigation/Navigation.dart';
+import 'package:ministry_minister_app/features/app_update/data/app_update_model.dart';
+import 'package:ministry_minister_app/features/app_update/data/app_update_request.dart';
 import 'package:ministry_minister_app/features/auth/presentation/pages/login_page.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../../core/Notification/data/fcm_notification_model.dart';
 import '../../../core/Notification/domin/notification_middleware.dart';
@@ -77,4 +80,29 @@ class AuthenticationRepository {
       }
     }
   }
+
+  static Future<BaseResultModel> checkAppUpdate() async {
+
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+    String buildNumber = packageInfo.buildNumber;
+
+    int number = int.tryParse(buildNumber) ?? 1;
+
+
+    AppUpdateRequestModel appUpdateRequestModel = AppUpdateRequestModel(
+      appType: 1,
+      buildNumber: number,
+    );
+
+    final res = await RemoteDataSource.request<AppUpdateModel>(
+      converter: (json) => AppUpdateModel.fromJson(json),
+      method: HttpMethod.get,
+      queryParameters: appUpdateRequestModel.toJson(),
+      withAuthentication: false,
+      url: ApiURLs.updateUrl,
+    );
+    return res;
+  }
+
 }

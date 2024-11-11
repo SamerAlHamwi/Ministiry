@@ -22,4 +22,7 @@ class ApiURLs {
   static const String getAllCalls = '${callUrl}GetAll';
   static const String joinCall = '${callUrl}JoinCall';
   static const String leaveCall = '${callUrl}LeaveCall';
+
+  static const String updateUrl = '${baseUrl}services/app/AppVersions/GetLatest';
+
 }

@@ -17,7 +17,7 @@ class HomeApp extends StatefulWidget {
   static PaginationCubit? waitingCallCubit;
   static ScrollController _scrollController = ScrollController();
 
-  HomeApp({Key? key}) : super(key: key);
+  const HomeApp({Key? key}) : super(key: key);
 
   @override
   State<HomeApp> createState() => _HomeAppState();
@@ -26,7 +26,7 @@ class HomeApp extends StatefulWidget {
     if (HomeApp.waitingCallCubit != null) {
       HomeApp.waitingCallCubit!.getList();
       _scrollController.animateTo(0,
-          duration: Duration(seconds: 1), curve: Curves.linear);
+          duration: const Duration(seconds: 1), curve: Curves.linear);
     }
   }
 }
@@ -38,7 +38,7 @@ class _HomeAppState extends State<HomeApp> {
         key: Keys.scaffoldKey,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          leading: LogoutPopupMenuButton(),
+          leading: const LogoutPopupMenuButton(),
           actions: [
             IconButton(
                 icon: const Icon(Icons.history, color: AppColors.primaryColor),
@@ -48,7 +48,7 @@ class _HomeAppState extends State<HomeApp> {
           ],
           iconTheme: const IconThemeData(color: AppColors.primaryColor),
           title: Text('Calls'.tr(),
-              style: TextStyle(color: AppColors.primaryColor)),
+              style: const TextStyle(color: AppColors.primaryColor)),
         ),
         body: Stack(fit: StackFit.expand, children: [
           Image.asset(

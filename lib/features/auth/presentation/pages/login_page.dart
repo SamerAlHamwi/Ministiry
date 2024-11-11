@@ -145,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
     return CreateModel<LoginResponseModel>(
         onSuccess: (LoginResponseModel model) {
           AppSharedPreferences.accessToken = model.accessToken!;
-          Navigation.pushReplacement(HomeApp());
+          Navigation.pushReplacement(const HomeApp());
         },
         repositoryCallBack: (data) =>
             AuthenticationRepository.authenticateLogIn(data),
