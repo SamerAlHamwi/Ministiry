@@ -1,7 +1,4 @@
-import 'dart:io';
 
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_fcm/flutter_fcm.dart';
 import '../constants/Keys.dart';
@@ -47,7 +44,6 @@ class Messaging {
             }
           }
         },
-        // TODO add this icon to android/app/src/main/res/drawable/ic_launcher.png
         icon: 'ic_launcher',
       );
     } catch (e) {

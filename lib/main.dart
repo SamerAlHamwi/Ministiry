@@ -3,16 +3,15 @@
 import 'dart:io';
 import 'dart:ui';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_fcm/flutter_fcm.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ministry_minister_app/features/app_update/presentation/check_update_screen.dart';
 import 'package:ministry_minister_app/features/auth/presentation/pages/login_page.dart';
 import 'package:ministry_minister_app/features/home_app/presentation/pages/home_app.dart';
-
 import 'core/Notification/notification.dart';
 import 'core/constants/Keys.dart';
 import 'core/constants/app_constants.dart';
