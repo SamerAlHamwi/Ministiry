@@ -79,7 +79,8 @@ class MyApp extends StatelessWidget {
           builder: EasyLoading.init(),
           locale: context.locale,
           title: AppSettings.appName,
-          home: const CheckUpdateScreen(),
+          // home: const CheckUpdateScreen(),
+          home: AppSharedPreferences.hasAccessToken ? const HomeApp() : const LoginPage(),
           material: (_, __) => MaterialAppData(
             scrollBehavior: AppScrollBehavior(),
             theme: AppTheme.appTheme,
