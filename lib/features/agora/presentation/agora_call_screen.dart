@@ -46,6 +46,14 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
     ));
 
     await _engine.enableVideo();
+
+    await _engine.setVideoEncoderConfiguration(const VideoEncoderConfiguration(
+      dimensions: VideoDimensions(width: 1280, height: 720), // Set the resolution to 720p
+      frameRate: 30, // Set frame rate to 30 FPS
+      bitrate: 1130, // Set bitrate in kbps
+      orientationMode: OrientationMode.orientationModeAdaptive,
+    ));
+
     await _engine.startPreview();
 
     await _engine.joinChannel(
